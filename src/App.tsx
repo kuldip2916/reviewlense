@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,7 +15,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <ScrollToTop />
       <div className="mesh-bg" />
       <div className="grid-overlay" />
@@ -27,6 +27,6 @@ export default function App() {
         <Route path="/privacy"  element={<Privacy />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </Router>
   );
 }
