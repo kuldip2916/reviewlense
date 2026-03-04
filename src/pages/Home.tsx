@@ -245,6 +245,267 @@ function SignalBar({ label, value, color }: { label: string; value: number; colo
 }
 
 /* ══════════════════════════════════════════════════════════
+   REDDIT CROSS-CHECK SECTION
+   ══════════════════════════════════════════════════════════ */
+
+const redditResults = [
+  {
+    subreddit: 'r/BuyItForLife',
+    title: 'Finally found a water bottle that actually lasts — 3 years and zero issues',
+    excerpt: 'Been using this for hiking and daily commute. The seal is still perfect, no rust, no smell. Honestly the best $28 I\'ve spent.',
+    upvotes: 2847,
+    comments: 143,
+    sentiment: 'positive' as const,
+    timeAgo: '8 months ago',
+    relevanceScore: 97,
+  },
+  {
+    subreddit: 'r/Frugal',
+    title: 'This product is genuinely excellent — bought three as gifts',
+    excerpt: 'Not an ad, just genuinely impressed. My whole family uses these now. Way better than the branded ones at twice the price.',
+    upvotes: 1204,
+    comments: 67,
+    sentiment: 'positive' as const,
+    timeAgo: '5 months ago',
+    relevanceScore: 91,
+  },
+  {
+    subreddit: 'r/mildlyinfuriating',
+    title: 'Why does the lid on this thing crack after 6 months? Third time replacing it.',
+    excerpt: 'Love the bottle but the lid design is genuinely terrible. Every single one I\'ve had has cracked at the hinge. Check the 1-star reviews — all the same issue.',
+    upvotes: 889,
+    comments: 214,
+    sentiment: 'negative' as const,
+    timeAgo: '2 months ago',
+    relevanceScore: 84,
+  },
+  {
+    subreddit: 'r/ZeroWaste',
+    title: 'Switched to this from plastic — highly recommend for eco-conscious folks',
+    excerpt: 'Durable, easy to clean, and the company uses recycled packaging. A few people in comments mentioned the lid issue but mine has been fine so far.',
+    upvotes: 632,
+    comments: 41,
+    sentiment: 'positive' as const,
+    timeAgo: '4 months ago',
+    relevanceScore: 78,
+  },
+];
+
+function RedditCard({ post, delay }: { post: typeof redditResults[0]; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [delay]);
+
+  const isPos = post.sentiment === 'positive';
+
+  return (
+    <div ref={ref} style={{
+      background: 'var(--surface-1)',
+      border: `1px solid ${isPos ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)'}`,
+      borderRadius: 14,
+      padding: '1.25rem 1.5rem',
+      transition: 'border-color 0.2s, transform 0.2s',
+      cursor: 'default',
+    }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = isPos ? 'rgba(34,197,94,0.4)' : 'rgba(239,68,68,0.4)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = isPos ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}
+    >
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {/* Reddit alien icon */}
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#ff4500" style={{ flexShrink: 0 }}>
+            <circle cx="10" cy="10" r="10" fill="#ff4500"/>
+            <path fill="white" d="M16.67 10a1.46 1.46 0 00-2.47-1 7.12 7.12 0 00-3.85-1.23l.65-3.08 2.13.45a1 1 0 101.07-1 1 1 0 00-.96.68l-2.38-.5a.16.16 0 00-.19.12l-.73 3.44a7.14 7.14 0 00-3.89 1.23 1.46 1.46 0 10-1.61 2.39 2.87 2.87 0 000 .44c0 2.24 2.61 4.06 5.83 4.06s5.83-1.82 5.83-4.06a2.87 2.87 0 000-.44 1.46 1.46 0 00.47-1zm-9.07 1.23a1 1 0 111 1 1 1 0 01-1-1zm5.56 2.65a3.47 3.47 0 01-2.32.68 3.47 3.47 0 01-2.32-.68.17.17 0 01.23-.23 3.14 3.14 0 002.09.55 3.14 3.14 0 002.09-.55.17.17 0 01.23.23zm-.22-1.65a1 1 0 111-1 1 1 0 01-1 1z"/>
+          </svg>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#ff6314' }}>{post.subreddit}</span>
+          <span style={{ fontSize: 12, color: '#475569' }}>· {post.timeAgo}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 20,
+            background: isPos ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)',
+            color: isPos ? '#22c55e' : '#ef4444',
+            border: `1px solid ${isPos ? 'rgba(34,197,94,0.25)' : 'rgba(239,68,68,0.25)'}`,
+          }}>
+            {isPos ? '▲ Positive' : '▼ Critical'}
+          </span>
+          <span style={{ fontSize: 11, color: '#475569', background: 'var(--surface-2)', padding: '3px 7px', borderRadius: 20 }}>
+            {post.relevanceScore}% match
+          </span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: '#f1f5f9', marginBottom: '0.5rem', lineHeight: 1.4 }}>
+        {post.title}
+      </h4>
+
+      {/* Excerpt */}
+      <p style={{ fontSize: '0.825rem', color: '#64748b', lineHeight: 1.6, marginBottom: '0.875rem' }}>
+        "{post.excerpt}"
+      </p>
+
+      {/* Footer stats */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#475569', fontSize: 12 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 19V6M5 12l7-7 7 7"/>
+          </svg>
+          <span style={{ fontWeight: 600, color: '#94a3b8' }}>{post.upvotes.toLocaleString()}</span>
+          <span>upvotes</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#475569', fontSize: 12 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>{post.comments} comments</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RedditSection() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const positiveCount = redditResults.filter(r => r.sentiment === 'positive').length;
+  const negativeCount = redditResults.filter(r => r.sentiment === 'negative').length;
+  const totalUpvotes = redditResults.reduce((s, r) => s + r.upvotes, 0);
+  const sentimentScore = Math.round((positiveCount / redditResults.length) * 100);
+
+  return (
+    <section style={{ padding: '0 24px 100px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+
+        {/* Section header */}
+        <div ref={headerRef} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'flex-end', marginBottom: 56, flexWrap: 'wrap' }}>
+          <div>
+            <div className="section-tag" style={{ display: 'inline-block', marginBottom: 16 }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="#ff4500">
+                  <circle cx="10" cy="10" r="10" fill="#ff4500"/>
+                  <path fill="white" d="M16.67 10a1.46 1.46 0 00-2.47-1 7.12 7.12 0 00-3.85-1.23l.65-3.08 2.13.45a1 1 0 101.07-1 1 1 0 00-.96.68l-2.38-.5a.16.16 0 00-.19.12l-.73 3.44a7.14 7.14 0 00-3.89 1.23 1.46 1.46 0 10-1.61 2.39 2.87 2.87 0 000 .44c0 2.24 2.61 4.06 5.83 4.06s5.83-1.82 5.83-4.06a2.87 2.87 0 000-.44 1.46 1.46 0 00.47-1zm-9.07 1.23a1 1 0 111 1 1 1 0 01-1-1zm5.56 2.65a3.47 3.47 0 01-2.32.68 3.47 3.47 0 01-2.32-.68.17.17 0 01.23-.23 3.14 3.14 0 002.09.55 3.14 3.14 0 002.09-.55.17.17 0 01.23.23zm-.22-1.65a1 1 0 111-1 1 1 0 01-1 1z"/>
+                </svg>
+                Reddit Cross-Check
+              </span>
+            </div>
+            <h2 className="section-title">
+              Real people.<br />
+              <span className="gradient-text">Real opinions.</span>
+            </h2>
+            <p className="section-sub" style={{ marginTop: 12, maxWidth: 520 }}>
+              While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens scans thousands of subreddits to surface what the community <em>actually</em> thinks — the good and the bad.
+            </p>
+          </div>
+
+          {/* Sentiment summary card */}
+          <div style={{
+            background: 'var(--surface-1)',
+            border: '1px solid var(--border)',
+            borderRadius: 16,
+            padding: '1.5rem 2rem',
+            minWidth: 220,
+            flexShrink: 0,
+          }}>
+            <div style={{ fontSize: 12, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600, marginBottom: 12 }}>
+              Analysis summary
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 8 }}>
+              <span style={{ fontSize: 36, fontWeight: 800, color: sentimentScore >= 70 ? '#22c55e' : '#f59e0b' }}>{sentimentScore}%</span>
+              <span style={{ fontSize: 14, color: '#64748b' }}>positive</span>
+            </div>
+            {/* Sentiment bar */}
+            <div style={{ height: 6, background: 'var(--surface-2)', borderRadius: 3, marginBottom: 16, overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${sentimentScore}%`, background: 'linear-gradient(90deg, #22c55e, #84cc16)', borderRadius: 3 }} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                <span style={{ color: '#64748b' }}>Threads found</span>
+                <span style={{ fontWeight: 600, color: '#f1f5f9' }}>{redditResults.length}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                <span style={{ color: '#64748b' }}>Total upvotes</span>
+                <span style={{ fontWeight: 600, color: '#f1f5f9' }}>{totalUpvotes.toLocaleString()}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                <span style={{ color: '#22c55e' }}>✓ Positive</span>
+                <span style={{ fontWeight: 600, color: '#22c55e' }}>{positiveCount}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                <span style={{ color: '#ef4444' }}>✗ Critical</span>
+                <span style={{ fontWeight: 600, color: '#ef4444' }}>{negativeCount}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Reddit cards grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: 16, marginBottom: 40 }}>
+          {redditResults.map((post, i) => (
+            <RedditCard key={i} post={post} delay={i * 80} />
+          ))}
+        </div>
+
+        {/* Bottom note */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '1.25rem 2rem',
+          background: 'var(--surface-1)',
+          border: '1px solid var(--border)',
+          borderRadius: 12,
+          flexWrap: 'wrap',
+          gap: 20,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 20 }}>🔍</span>
+            <span style={{ fontSize: 13, color: '#64748b' }}>
+              <strong style={{ color: '#94a3b8' }}>Spam-filtered</strong> — deal-posting and affiliate subreddits excluded
+            </span>
+          </div>
+          <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 20 }}>⚖️</span>
+            <span style={{ fontSize: 13, color: '#64748b' }}>
+              <strong style={{ color: '#94a3b8' }}>Weighted by upvotes</strong> — more votes = more influence on score
+            </span>
+          </div>
+          <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 20 }}>🎯</span>
+            <span style={{ fontSize: 13, color: '#64748b' }}>
+              <strong style={{ color: '#94a3b8' }}>Relevance-scored</strong> — ASIN, brand &amp; product noun matching
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════
    HOME PAGE
    ══════════════════════════════════════════════════════════ */
 export default function Home() {
@@ -326,7 +587,7 @@ export default function Home() {
               </p>
 
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <a href="#install" className="btn-primary" style={{ fontSize: 15 }}>
+                <a href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: 15 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                   </svg>
@@ -526,6 +787,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══ REDDIT CROSS-CHECK ════════════════════════════════ */}
+      <RedditSection />
+
       {/* ══ PLATFORMS ═════════════════════════════════════════ */}
       <section style={{ padding: '0 24px 100px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -570,7 +834,7 @@ export default function Home() {
             <p style={{ fontSize: 16, color: '#64748b', marginBottom: 36, lineHeight: 1.7 }}>
               Install ReviewLens for free and shop with confidence. Available on Chrome — works on Amazon, Walmart, eBay, and Etsy.
             </p>
-            <a href="#install" className="btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>
+            <a href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
               </svg>

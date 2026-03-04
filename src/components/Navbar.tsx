@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logoSrc from '../assets/logo.png';
 
-const CHROME_STORE_URL = '#install'; // replace with real CWS URL after publishing
+const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,13 +37,12 @@ export default function Navbar() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 36, height: 36, borderRadius: 10,
-            background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 18, boxShadow: '0 0 20px rgba(99,102,241,0.4)',
-          }}>🔍</div>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <img
+            src={logoSrc}
+            alt="ReviewLens logo"
+            style={{ width: 38, height: 38, objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(99,102,241,0.6))' }}
+          />
           <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: '-0.02em' }}>
             Review<span style={{ color: '#6366f1' }}>Lens</span>
           </span>

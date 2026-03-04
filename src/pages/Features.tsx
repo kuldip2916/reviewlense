@@ -491,7 +491,7 @@ export default function Features() {
               Add ReviewLens to Chrome for free — no account, no data collection, no catch.
             </p>
             <a
-              href="https://chrome.google.com/webstore"
+              href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

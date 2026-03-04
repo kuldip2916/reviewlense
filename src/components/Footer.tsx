@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logoSrc from '../assets/logo.png';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -16,11 +17,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-              <div style={{
-                width: 34, height: 34, borderRadius: 9,
-                background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17,
-              }}>🔍</div>
+              <img
+                src={logoSrc}
+                alt="ReviewLens logo"
+                style={{ width: 36, height: 36, objectFit: 'contain' }}
+              />
               <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>
                 Review<span style={{ color: '#6366f1' }}>Lens</span>
               </span>
@@ -78,7 +79,7 @@ export default function Footer() {
             <p style={{ fontSize: 13, color: '#4b5563', lineHeight: 1.7, marginBottom: 16 }}>
               Available on the Chrome Web Store. No account, no subscription.
             </p>
-            <a href="#install" style={{
+            <a href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.25)',
               color: '#6366f1', borderRadius: 10, padding: '9px 16px',
