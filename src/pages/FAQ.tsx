@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Lightbulb, BarChart, Lock, Settings, HelpCircle } from '../components/Icons';
 
 /* ─── Animated fade-in ──────────────────────────────── */
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -107,7 +108,7 @@ interface FAQItem {
   a: React.ReactNode;
 }
 interface Category {
-  icon: string;
+  icon: React.ReactNode;
   label: string;
   items: FAQItem[];
 }
@@ -120,7 +121,7 @@ export default function FAQ() {
 
   const categories: Record<string, Category> = {
     general: {
-      icon: '💡',
+      icon: <Lightbulb size={20} />,
       label: 'General',
       items: [
         {
@@ -150,47 +151,58 @@ export default function FAQ() {
       ],
     },
     scores: {
-      icon: '📊',
+      icon: <BarChart size={20} />,
       label: 'Scores & Signals',
       items: [
         {
           q: 'What does the overall score mean?',
-          a: 'The overall score (0–100) is a weighted combination: 70% from the review authenticity analysis and 30% from Reddit sentiment. It maps to letter grades: A (80+), B (65+), C (50+), D (35+), F (below 35). A lower score means more red flags — it doesn\'t necessarily mean the product is bad, just that its reviews may be unreliable.',
+          a: 'The overall score (0–100) is a weighted combination: 70% from the review authenticity analysis and 30% from Reddit sentiment. It\'s then adjusted for confidence — products with very few reviews get pulled toward 50 (neutral) to avoid misleading results. The score maps to letter grades: A (80+), B (65+), C (50+), D (35+), F (below 35). A lower score means more red flags — it doesn\'t necessarily mean the product is bad, just that its reviews may be unreliable.',
         },
         {
           q: 'What signals are used for the authenticity score?',
           a: (
             <span>
-              Four signals contribute to the authenticity score:
+              Seven signals contribute to the authenticity score:
               <br /><br />
               <strong style={{ color: 'var(--text-primary)' }}>1. Verified purchase ratio</strong> — What % of reviews are from verified buyers.<br />
               <strong style={{ color: 'var(--text-primary)' }}>2. Review burst detection</strong> — Abnormal spikes in review volume over time.<br />
               <strong style={{ color: 'var(--text-primary)' }}>3. Rating clustering</strong> — Unnatural concentration at 5-stars with few mid-range ratings.<br />
-              <strong style={{ color: 'var(--text-primary)' }}>4. Generic phrasing</strong> — Template-like or AI-generated review language patterns.
+              <strong style={{ color: 'var(--text-primary)' }}>4. Text quality analysis</strong> — Detects generic, AI-generated, or low-quality review language (beyond just word count).<br />
+              <strong style={{ color: 'var(--text-primary)' }}>5. Sentiment-rating mismatch</strong> — Catches reviews where the star rating contradicts the text (e.g. 5 stars but says "terrible product").<br />
+              <strong style={{ color: 'var(--text-primary)' }}>6. Duplicate detection</strong> — Finds near-identical copy-pasted reviews from fake review farms.<br />
+              <strong style={{ color: 'var(--text-primary)' }}>7. Temporal decay</strong> — Recent red flags are weighted more heavily than old ones.
             </span>
           ),
         },
         {
-          q: 'How does Reddit sentiment work?',
-          a: 'ReviewLens searches Reddit for posts that genuinely discuss the product using a relevance scoring system: ASIN/product ID matches score highest, brand mentions score next, and common product nouns score lowest. Spam and deal-posting subreddits are excluded. Sentiment is calculated using upvote weight × positivity score.',
+          q: 'How do the penalties compound?',
+          a: 'Unlike simple additive scoring (e.g. "minus 15 points per flag"), ReviewLens uses multiplicative compounding. Each red flag multiplies the score by a penalty factor (e.g. ×0.65 for high severity, ×0.80 for medium). This means a single flag barely affects the score, but multiple flags stacking together cause a much sharper drop — which accurately reflects how real fake-review schemes involve multiple correlated signals.',
         },
         {
-          q: 'What does "insufficient data" mean on the price chart?',
-          a: 'The price tracking feature works by recording the price each time you visit a product page. "Insufficient data" means this is the first (or second) time you\'ve visited — there isn\'t enough history yet to calculate a trend. Visit the same product a few days later and a trend will appear. For longer history, you\'d need an external API like Keepa (not currently integrated).',
+          q: 'What is the "confidence" indicator?',
+          a: 'Products with very few reviews (under 10) show a "low confidence" badge. This means the score is less reliable because there\'s not enough data. In this case, the score is pulled 20% toward 50 (neutral) to avoid misleading you. Products with 10-50 reviews get a small 5% adjustment, and products with 50+ reviews are shown at full confidence with no adjustment.',
+        },
+        {
+          q: 'How does Reddit sentiment work?',
+          a: 'ReviewLens searches Reddit for posts that genuinely discuss the product using a multi-pass relevance scoring system: product ID matches score highest (+12), brand mentions score next (+5), and product nouns use word-boundary matching for precision. Over 60 spam subreddits are blocked, and product-review subreddits get a +3 bonus. Sentiment is time-weighted — recent posts matter more than old ones — and upvote-weighted so popular opinions carry more influence.',
         },
         {
           q: 'Why is the Reddit score sometimes 50 even for good products?',
           a: 'A score of 50 means ReviewLens found no Reddit discussions for this product. This is neutral — not positive or negative. It\'s common for niche or lesser-known products. When no posts are found, we default to a neutral 50 so the Reddit component doesn\'t unfairly penalise the overall score.',
         },
+        {
+          q: 'What does "insufficient data" mean on the price chart?',
+          a: 'The price tracking feature works by recording the price each time you visit a product page. "Insufficient data" means this is the first (or second) time you\'ve visited — there isn\'t enough history yet to calculate a trend. Visit the same product a few days later and a trend will appear.',
+        },
       ],
     },
     privacy: {
-      icon: '🔒',
+      icon: <Lock size={20} />,
       label: 'Privacy & Data',
       items: [
         {
           q: 'What data does ReviewLens collect?',
-          a: 'ReviewLens collects no personal data. The only data stored is price history for products you visit — this stays entirely on your device in Chrome\'s local storage. No data is sent to any server operated by us.',
+          a: 'ReviewLens collects no personal data. The only data stored is price history and cached analysis results — this is kept entirely inside your browser\'s own storage area (chrome.storage.local), managed and protected by Chrome itself. It\'s not saved as files on your hard drive, and it\'s never sent to any server operated by us.',
         },
         {
           q: 'Do you sell or share my data?',
@@ -211,8 +223,12 @@ export default function FAQ() {
           ),
         },
         {
+          q: 'Where exactly is my data stored?',
+          a: 'All data is stored in chrome.storage.local — a secure storage area built into Chrome itself, tied to the extension. It\'s not stored as files on your computer\'s hard drive or in a database. Think of it like the extension\'s private memory that only Chrome can access. When you uninstall the extension, this data is automatically deleted.',
+        },
+        {
           q: 'Can I delete stored price history?',
-          a: 'Yes. Open Chrome DevTools on any page → Application → Storage → Local Storage → chrome-extension://... and you can view and delete any stored price data. We\'re working on adding a built-in clear button in a future update.',
+          a: 'Yes. Open Chrome DevTools on any page → Application → Storage → Local Storage → chrome-extension://... and you can view and delete any stored price data. Alternatively, uninstalling and reinstalling the extension clears everything. We\'re working on adding a built-in clear button in a future update.',
         },
         {
           q: 'Why does the extension need access to Amazon/Walmart/eBay/Etsy?',
@@ -221,7 +237,7 @@ export default function FAQ() {
       ],
     },
     technical: {
-      icon: '⚙️',
+      icon: <Settings size={20} />,
       label: 'Technical',
       items: [
         {
@@ -353,7 +369,9 @@ export default function FAQ() {
             background: 'linear-gradient(135deg, var(--accent-subtle) 0%, transparent 60%)',
             borderColor: 'var(--accent-border)',
           }}>
-            <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🤔</div>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <HelpCircle size={28} />
+            </div>
             <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.5rem' }}>
               Still have questions?
             </h3>

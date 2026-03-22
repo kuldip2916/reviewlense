@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import logoSrc from '../assets/logo.png';
+import { Search } from './Icons';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -85,7 +86,7 @@ export default function Footer() {
               color: '#6366f1', borderRadius: 10, padding: '9px 16px',
               fontSize: 13, fontWeight: 600, transition: 'all 0.2s',
             }}>
-              🔍 Add to Chrome
+              <Search size={14} color="#6366f1" /> Add to Chrome
             </a>
           </div>
         </div>

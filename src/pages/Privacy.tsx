@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { ShieldOff, Globe, Radio, Gift } from '../components/Icons';
 
 /* ─── Section component ─────────────────────────────── */
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -22,7 +23,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 }
 
 /* ─── Info card ─────────────────────────────────────── */
-function InfoCard({ icon, title, description, color }: { icon: string; title: string; description: string; color: string }) {
+function InfoCard({ icon, title, description, color }: { icon: React.ReactNode; title: string; description: string; color: string }) {
   return (
     <div style={{
       padding: '1.25rem',
@@ -33,7 +34,7 @@ function InfoCard({ icon, title, description, color }: { icon: string; title: st
       gap: '1rem',
       alignItems: 'flex-start',
     }}>
-      <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{icon}</span>
+      <div style={{ flexShrink: 0 }}>{icon}</div>
       <div>
         <div style={{ fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.25rem', fontSize: '0.9rem' }}>{title}</div>
         <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{description}</div>
@@ -75,25 +76,25 @@ export default function Privacy() {
       <section style={{ padding: '0 1.5rem 3rem', maxWidth: '850px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
           <InfoCard
-            icon="🚫"
+            icon={<ShieldOff size={24} color="#22c55e" />}
             title="No personal data collected"
             description="We don't collect your name, email, browsing history, or any personally identifiable information."
             color="#22c55e"
           />
           <InfoCard
-            icon="🏠"
-            title="Everything stays on your device"
-            description="Price history and cached analysis results are stored only in Chrome's local storage — never on our servers."
+            icon={<Globe size={24} color="#6366f1" />}
+            title="Everything stays in your browser"
+            description="Price history and cached results are stored in chrome.storage.local — a secure area inside Chrome itself, not as files on your hard drive. Never sent to our servers."
             color="#6366f1"
           />
           <InfoCard
-            icon="📡"
+            icon={<Radio size={24} color="#f59e0b" />}
             title="No ReviewLens servers"
             description="All API calls go directly from your browser to Amazon, Walmart, eBay, Etsy, and Reddit. We are not in the middle."
             color="#f59e0b"
           />
           <InfoCard
-            icon="🎁"
+            icon={<Gift size={24} color="#ec4899" />}
             title="No monetisation of data"
             description="We have no advertising business model. ReviewLens is free because it costs us nothing to run — there are no servers to pay for."
             color="#ec4899"
@@ -123,14 +124,22 @@ export default function Privacy() {
             </p>
             <ul style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
               <li>
-                <strong style={{ color: 'var(--text-primary)' }}>Price history</strong> — The price of product pages you visit while the extension is active. Stored locally in <code style={{ background: 'var(--surface-2)', padding: '0.1em 0.3em', borderRadius: '3px', fontSize: '0.875em', color: 'var(--accent)' }}>chrome.storage.local</code> with the key format <code style={{ background: 'var(--surface-2)', padding: '0.1em 0.3em', borderRadius: '3px', fontSize: '0.875em', color: 'var(--accent)' }}>price_{'{'}platform{'}'}_{'{'} productId{'}'}</code>.
+                <strong style={{ color: 'var(--text-primary)' }}>Price history</strong> — The price of product pages you visit while the extension is active. Stored in <code style={{ background: 'var(--surface-2)', padding: '0.1em 0.3em', borderRadius: '3px', fontSize: '0.875em', color: 'var(--accent)' }}>chrome.storage.local</code> with the key format <code style={{ background: 'var(--surface-2)', padding: '0.1em 0.3em', borderRadius: '3px', fontSize: '0.875em', color: 'var(--accent)' }}>price_{'{'}platform{'}'}_{'{'} productId{'}'}</code>.
               </li>
               <li>
                 <strong style={{ color: 'var(--text-primary)' }}>Analysis cache</strong> — The results of review analysis (score, flags, Reddit sentiment) cached for 24 hours to avoid repeated API calls. Stored in <code style={{ background: 'var(--surface-2)', padding: '0.1em 0.3em', borderRadius: '3px', fontSize: '0.875em', color: 'var(--accent)' }}>chrome.storage.local</code>.
               </li>
             </ul>
+            <div style={{ padding: '1rem 1.25rem', background: 'rgba(99,102,241,0.06)', border: '1px solid rgba(99,102,241,0.15)', borderRadius: '0.75rem', marginBottom: '1rem' }}>
+              <p style={{ marginBottom: '0.5rem' }}>
+                <strong style={{ color: 'var(--text-primary)' }}>What is chrome.storage.local?</strong>
+              </p>
+              <p style={{ fontSize: '0.875rem' }}>
+                It's a secure storage area built into Chrome itself, managed by the browser. It is <strong style={{ color: 'var(--text-primary)' }}>not</strong> the same as saving files on your computer's hard drive. This data lives inside Chrome's own internal database, is only accessible by the ReviewLens extension, and is automatically deleted when you uninstall the extension. No files are created on your desktop, documents folder, or anywhere else on your file system.
+              </p>
+            </div>
             <p>
-              This data never leaves your device. It is not transmitted to any server operated by ReviewLens.
+              This data never leaves your browser. It is not transmitted to any server operated by ReviewLens.
             </p>
           </Section>
 
@@ -173,7 +182,7 @@ export default function Privacy() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
               {[
-                { perm: 'storage', reason: 'To save price history and analysis cache locally on your device.' },
+                { perm: 'storage', reason: 'To save price history and analysis cache in chrome.storage.local (inside the browser, not on your hard drive).' },
                 { perm: 'scripting', reason: 'To inject a small script into product pages that reads the displayed price and product ID.' },
                 { perm: 'tabs', reason: 'To detect when you navigate to a supported product page so ReviewLens can activate.' },
                 { perm: 'host permissions (amazon, walmart, ebay, etsy)', reason: 'Required to fetch review data and inject the ReviewLens button on product pages.' },
@@ -203,7 +212,7 @@ export default function Privacy() {
 
           <Section title="5. Data Retention & Deletion">
             <p style={{ marginBottom: '1rem' }}>
-              Data stored locally by ReviewLens is retained as follows:
+              Data stored in your browser by ReviewLens is retained as follows:
             </p>
             <ul style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '1rem' }}>
               <li><strong style={{ color: 'var(--text-primary)' }}>Price history:</strong> Maximum 60 data points per product, maximum 90 days. Oldest entries are automatically pruned.</li>

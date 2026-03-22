@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ShieldCheck, RedditIcon, DollarSign, Zap, BarChart, Search, Sparkles } from '../components/Icons';
 
 /* ─── Animated section wrapper ─────────────────────── */
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -27,7 +28,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 /* ─── Feature Detail Card ───────────────────────────── */
 interface FeatureDetailProps {
-  icon: string;
+  iconEl: React.ReactNode;
   title: string;
   tagline: string;
   description: string;
@@ -36,7 +37,7 @@ interface FeatureDetailProps {
   accent: string;
   reversed?: boolean;
 }
-function FeatureDetail({ icon, title, tagline, description, bullets, platforms, accent, reversed }: FeatureDetailProps) {
+function FeatureDetail({ iconEl, title, tagline, description, bullets, platforms, accent, reversed }: FeatureDetailProps) {
   return (
     <div style={{
       display: 'grid',
@@ -48,7 +49,9 @@ function FeatureDetail({ icon, title, tagline, description, bullets, platforms, 
       {/* Text side */}
       <div style={{ order: reversed ? 2 : 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-          <span style={{ fontSize: '2rem' }}>{icon}</span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {iconEl}
+          </div>
           <span style={{
             fontSize: '0.75rem',
             fontWeight: 600,
@@ -98,7 +101,7 @@ function FeatureDetail({ icon, title, tagline, description, bullets, platforms, 
           background: `linear-gradient(135deg, ${accent}08 0%, transparent 60%)`,
           borderColor: `${accent}25`,
         }}>
-          <FeatureVisual title={title} accent={accent} icon={icon} />
+          <FeatureVisual title={title} accent={accent} iconEl={iconEl} />
         </div>
       </div>
     </div>
@@ -106,7 +109,7 @@ function FeatureDetail({ icon, title, tagline, description, bullets, platforms, 
 }
 
 /* ─── Per-feature visual mockups ──────────────────── */
-function FeatureVisual({ title, accent, icon }: { title: string; accent: string; icon: string }) {
+function FeatureVisual({ title, accent, iconEl }: { title: string; accent: string; iconEl: React.ReactNode }) {
   if (title.includes('Authenticity')) {
     return (
       <div>
@@ -269,8 +272,8 @@ function FeatureVisual({ title, accent, icon }: { title: string; accent: string;
 
   // Generic fallback
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100px', fontSize: '3rem' }}>
-      {icon}
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100px' }}>
+      {iconEl}
     </div>
   );
 }
@@ -278,21 +281,23 @@ function FeatureVisual({ title, accent, icon }: { title: string; accent: string;
 /* ─── Comparison table ───────────────────────────────── */
 function ComparisonTable() {
   const features = [
-    'Fake review detection',
-    'Reddit community sentiment',
+    'Fake review detection (7 signals)',
+    'Reddit community cross-check',
     'Price trend tracking',
+    'Sentiment-rating mismatch detection',
+    'Duplicate review detection',
+    'Confidence-adjusted scoring',
     'Works on 4 platforms',
     'No account required',
     'Completely free',
-    'Privacy-first (no data sent)',
-    'Real-time analysis',
+    'Data stays in your browser',
   ];
   const tools = ['ReviewLens', 'Fakespot', 'ReviewMeta', 'Manual research'];
   const support: Record<string, boolean[]> = {
-    'ReviewLens':      [true, true, true, true, true, true, true, true],
-    'Fakespot':        [true, false, false, false, true, false, false, true],
-    'ReviewMeta':      [true, false, false, false, true, true, false, false],
-    'Manual research': [false, true, false, true, true, true, true, false],
+    'ReviewLens':      [true, true, true, true, true, true, true, true, true, true],
+    'Fakespot':        [true, false, false, false, false, false, false, true, false, false],
+    'ReviewMeta':      [true, false, false, false, false, false, false, true, true, false],
+    'Manual research': [false, true, false, false, false, false, true, true, true, true],
   };
 
   return (
@@ -343,30 +348,32 @@ export default function Features() {
 
   const features: FeatureDetailProps[] = [
     {
-      icon: '🛡️',
+      iconEl: <ShieldCheck size={28} color="#6366f1" />,
       title: 'Review Authenticity Score',
       tagline: 'Core Signal',
-      description: 'Our proprietary algorithm analyses every available review signal to compute a 0–100 authenticity score. The score combines verified purchase ratios, reviewer profile analysis, linguistic patterns, and timing anomalies into a single trustworthy grade.',
+      description: 'Our scoring engine runs 7 independent checks on every product\'s reviews and combines them using compounding penalties — so multiple red flags stack exponentially, not just add up. The result is a 0–100 score with an A–F grade you can understand at a glance.',
       bullets: [
         'Verified vs. unverified purchase ratio weighting',
-        'Suspicious phrasing and template-language detection',
-        'Reviewer profile age and activity analysis',
-        'Cross-signal correlation for final score',
-        'Letter grade (A–F) for instant readability',
+        'Sentiment-rating mismatch detection (5 stars but negative text = caught)',
+        'Duplicate and near-duplicate review detection via text similarity',
+        'Review text quality analysis beyond simple word count',
+        'Compounding penalties — multiple red flags multiply together',
+        'Confidence indicator for products with few reviews',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
       accent: '#6366f1',
     },
     {
-      icon: '📡',
+      iconEl: <RedditIcon size={28} />,
       title: 'Reddit Community Sentiment',
       tagline: 'Social Signal',
-      description: 'While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens searches across thousands of subreddits to find genuine community opinions about the product — surfacing both praise and warnings that sellers can\'t manipulate.',
+      description: 'While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens searches across thousands of subreddits to find genuine community opinions — with smart relevance scoring that filters out unrelated posts and time-weighted sentiment that prioritises recent discussions.',
       bullets: [
-        'Multi-subreddit search with relevance scoring',
-        'Spam subreddit blocklist (deal sites, affiliate posts)',
-        'ASIN + brand + noun matching for precision',
-        'Sentiment weighting: upvote score × positivity',
+        'Multi-subreddit search with word-boundary relevance scoring',
+        '60+ spam subreddits blocked (deal sites, memes, affiliate posts)',
+        'Product ID + brand + noun matching for precision',
+        'Upvote-weighted sentiment — popular posts carry more influence',
+        'Temporal weighting — recent posts matter more than old ones',
         'Direct links to source Reddit discussions',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
@@ -374,7 +381,7 @@ export default function Features() {
       reversed: true,
     },
     {
-      icon: '💰',
+      iconEl: <DollarSign size={28} color="#22c55e" />,
       title: 'Price Trend Tracking',
       tagline: 'Price Signal',
       description: 'Ever wonder if that "50% off sale" is real? ReviewLens tracks the price every time you visit a product, building a history to expose artificial inflation — a common dark pattern where sellers inflate the "original" price to make discounts look bigger.',
@@ -383,21 +390,22 @@ export default function Features() {
         'Up to 90 days / 60 data points per product',
         'Visual sparkline chart with min / avg / high stats',
         '7-day trend direction and percentage change',
-        'Works on all 4 supported platforms',
+        'Multi-currency detection (USD, EUR, GBP, AUD, + 20 more)',
+        'All data stored in your browser — never on our servers',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
       accent: '#22c55e',
     },
     {
-      icon: '⚡',
+      iconEl: <Zap size={28} color="#ef4444" />,
       title: 'Review Burst Detection',
       tagline: 'Timing Signal',
-      description: 'Fake review farms typically operate in bursts — flooding a product with dozens of 5-star reviews within a 24–48 hour window. ReviewLens analyses the temporal distribution of reviews and flags statistically abnormal spikes.',
+      description: 'Fake review farms typically operate in bursts — flooding a product with dozens of 5-star reviews within a 24–48 hour window. ReviewLens analyses the temporal distribution of reviews and flags statistically abnormal spikes, with recent bursts weighted more heavily than older ones.',
       bullets: [
         'Chronological review velocity charting',
         'Statistical outlier detection for review clusters',
         'Severity rating: low / medium / high',
-        'Correlation with product launch or sales events',
+        'Temporal decay — recent bursts flagged more aggressively',
         'Multi-window analysis (daily, weekly, monthly)',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
@@ -405,7 +413,7 @@ export default function Features() {
       reversed: true,
     },
     {
-      icon: '📊',
+      iconEl: <BarChart size={28} color="#8b5cf6" />,
       title: 'Rating Distribution Analysis',
       tagline: 'Pattern Signal',
       description: 'Real products have a natural bell-curve distribution of ratings. When 85%+ of ratings cluster at 5 stars with almost no 2 or 3 star reviews, that\'s a red flag. ReviewLens detects these unnatural patterns and flags them clearly.',
@@ -432,15 +440,16 @@ export default function Features() {
             background: 'var(--accent-subtle)', border: '1px solid var(--accent-border)',
             fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '1.5rem',
           }}>
-            ✦ How ReviewLens works
+            <Sparkles size={14} /> How ReviewLens works
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.25rem' }}>
-            Five signals.{' '}
+            Seven signals.{' '}
             <span className="gradient-text">One verdict.</span>
           </h1>
           <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            ReviewLens combines multiple independent data sources — product reviews, Reddit discussions,
-            and price history — to give you a complete picture sellers don't want you to see.
+            ReviewLens runs 7 review checks, cross-references with Reddit community sentiment,
+            and tracks price history — giving you a complete picture sellers don't want you to see.
+            All scoring is transparent, compounding, and confidence-adjusted.
           </p>
         </FadeIn>
       </section>
@@ -464,7 +473,7 @@ export default function Features() {
               How we compare
             </h2>
             <p style={{ color: 'var(--text-secondary)' }}>
-              ReviewLens is the only free tool that combines all five signals in one place.
+              ReviewLens is the only free tool that combines 7 review signals, Reddit cross-checking, and price tracking in one place.
             </p>
           </div>
           <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
@@ -483,7 +492,9 @@ export default function Features() {
             background: 'linear-gradient(135deg, var(--accent-subtle) 0%, transparent 60%)',
             borderColor: 'var(--accent-border)',
           }}>
-            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🔍</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+              <Search size={40} color="#6366f1" />
+            </div>
             <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '0.75rem' }}>
               Ready to shop smarter?
             </h2>
