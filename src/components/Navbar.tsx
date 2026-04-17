@@ -18,6 +18,7 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   const navLinks = [
+    { label: 'Try it',      to: '/analyze' },
     { label: 'Features',    to: '/features' },
     { label: 'Blog',        to: '/blog' },
     { label: 'FAQ',         to: '/faq' },
