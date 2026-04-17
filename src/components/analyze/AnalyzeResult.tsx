@@ -30,7 +30,7 @@ export function AnalyzeResult({ analysis, onReset }: Props) {
         margin: '0 auto',
       }}
     >
-      {/* Header — product meta + ScoreRing */}
+      {/* Header - product meta + ScoreRing */}
       <div
         style={{
           display: 'grid',
@@ -110,7 +110,7 @@ export function AnalyzeResult({ analysis, onReset }: Props) {
         />
       </motion.div>
 
-      {/* Two columns — flags + reddit */}
+      {/* Two columns - flags + reddit */}
       <div
         style={{
           display: 'grid',

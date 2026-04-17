@@ -17,7 +17,7 @@ const blogPosts: BlogPost[] = [
     date: 'April 1, 2026',
     readTime: '6 min read',
     excerpt:
-      'Fake reviews on Amazon have gotten smarter. Here are the patterns to watch for — and what tools can help you see through them.',
+      'Fake reviews on Amazon have gotten smarter. Here are the patterns to watch for - and what tools can help you see through them.',
     category: 'Guide',
   },
   {

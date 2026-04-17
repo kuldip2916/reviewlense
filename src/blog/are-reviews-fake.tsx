@@ -47,14 +47,14 @@ export default function AreReviewsFakePost() {
           }}
         >
           <p style={{ marginBottom: 0, fontSize: 16, color: '#e2e8f0' }}>
-            <strong>The numbers are shocking:</strong> Between 30–40% of online reviews on platforms like
+            <strong>The numbers are shocking:</strong> Between 30-40% of online reviews on platforms like
             Amazon, Walmart, and eBay are estimated to be fake or manipulated. The FTC cracked down hard in
-            2023–2024, but the problem only got more sophisticated.
+            2023-2024, but the problem only got more sophisticated.
           </p>
         </div>
         <p style={{ marginBottom: 0 }}>
           The bad news: You can't trust the star rating alone. The good news: There are proven ways to spot
-          fakes — and most of them take less than 30 seconds.
+          fakes - and most of them take less than 30 seconds.
         </p>
       </section>
 
@@ -84,7 +84,7 @@ export default function AreReviewsFakePost() {
         >
           <li style={{ marginBottom: 12 }}>
             <strong>Review farms and services:</strong> Companies pay third-party services to post fake
-            reviews. This costs sellers $0.50–$3 per review.
+            reviews. This costs sellers $0.50-$3 per review.
           </li>
           <li style={{ marginBottom: 12 }}>
             <strong>Incentivized reviews:</strong> Sellers offer discounts or freebies in exchange for
@@ -132,8 +132,8 @@ export default function AreReviewsFakePost() {
             1. Look at the Rating Distribution
           </h3>
           <p style={{ marginBottom: 0 }}>
-            Scroll to the rating breakdown graph. Real products show a natural curve: most 4–5 stars, fewer
-            3-stars, even fewer 1–2 stars. If 85%+ are 5-stars with almost nothing in between? Suspicious.
+            Scroll to the rating breakdown graph. Real products show a natural curve: most 4-5 stars, fewer
+            3-stars, even fewer 1-2 stars. If 85%+ are 5-stars with almost nothing in between? Suspicious.
           </p>
         </div>
 
@@ -167,7 +167,7 @@ export default function AreReviewsFakePost() {
             3. Read the 3-Star Reviews First
           </h3>
           <p style={{ marginBottom: 0 }}>
-            Ignore the 5-stars for now. Go straight to 3-star reviews — these are where real users mention
+            Ignore the 5-stars for now. Go straight to 3-star reviews - these are where real users mention
             actual issues. If the 3-stars are also generic ("Great product!"), that's a red flag. Real
             criticism appears in middle ratings.
           </p>
@@ -278,7 +278,7 @@ export default function AreReviewsFakePost() {
           </p>
           <p style={{ marginBottom: 0, fontSize: 14, color: '#cbd5e1' }}>
             You'll find real, unfiltered discussions from people who actually bought the product. Reddit is
-            full of passionate reviews because people aren't being paid — they're just sharing their honest
+            full of passionate reviews because people aren't being paid - they're just sharing their honest
             experience.
           </p>
         </div>
@@ -329,7 +329,7 @@ export default function AreReviewsFakePost() {
           <li style={{ marginBottom: 8 }}>Compare to competitor versions and their review counts</li>
         </ul>
         <p style={{ marginBottom: 0 }}>
-          This takes 2–3 minutes and will save you from bad purchases far more often than blindly trusting a
+          This takes 2-3 minutes and will save you from bad purchases far more often than blindly trusting a
           4.8-star rating.
         </p>
       </section>

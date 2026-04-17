@@ -5,7 +5,7 @@ import { ShieldCheck, Search, Sparkles, CheckCircle, RedditIcon, DollarSign } fr
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
 
-// Link to Amazon's Best Sellers instead of a specific ASIN — individual product IDs
+// Link to Amazon's Best Sellers instead of a specific ASIN - individual product IDs
 // get delisted or region-locked over time, and a dead link is worse than an extra click.
 const AMAZON_BESTSELLERS_URL = 'https://www.amazon.com/gp/bestsellers/';
 
@@ -108,7 +108,7 @@ export default function Welcome() {
       >
         <FadeIn>
           <div className="section-tag">
-            <Sparkles size={14} /> You're in — ReviewLens is installed
+            <Sparkles size={14} /> You're in - ReviewLens is installed
           </div>
           <h1
             style={{
@@ -129,7 +129,7 @@ export default function Welcome() {
             }}
           >
             Three steps. Under a minute. Then every product page you visit on
-            Amazon, Walmart, eBay, or Etsy gets a real authenticity score —
+            Amazon, Walmart, eBay, or Etsy gets a real authenticity score -
             automatically.
           </p>
         </FadeIn>
@@ -168,7 +168,7 @@ export default function Welcome() {
             title="Visit any product page"
             body={
               <>
-                Amazon, Walmart, eBay, or Etsy — go to a product you're
+                Amazon, Walmart, eBay, or Etsy - go to a product you're
                 considering. ReviewLens starts analyzing the reviews the moment
                 the page loads. No button to click.
               </>
@@ -182,7 +182,7 @@ export default function Welcome() {
             title="See the score appear"
             body={
               <>
-                A small overlay pops up in the bottom-right corner with an A–F
+                A small overlay pops up in the bottom-right corner with an A-F
                 grade, a breakdown of red flags, Reddit community sentiment, and
                 the product's price history. Click the toolbar icon for the
                 full report.
@@ -228,7 +228,7 @@ export default function Welcome() {
               }}
             >
               We'll open Amazon's Best Sellers in a new tab. Click any product
-              you're curious about — the ReviewLens overlay shows up in the
+              you're curious about - the ReviewLens overlay shows up in the
               bottom-right corner within a few seconds.
             </p>
             <a
@@ -292,31 +292,31 @@ export default function Welcome() {
             {[
               {
                 grade: 'A',
-                range: '80–100',
+                range: '80-100',
                 color: '#22c55e',
                 label: 'Trustworthy',
               },
               {
                 grade: 'B',
-                range: '65–79',
+                range: '65-79',
                 color: '#84cc16',
                 label: 'Mostly solid',
               },
               {
                 grade: 'C',
-                range: '50–64',
+                range: '50-64',
                 color: '#f59e0b',
                 label: 'Be cautious',
               },
               {
                 grade: 'D',
-                range: '35–49',
+                range: '35-49',
                 color: '#ef4444',
                 label: 'Likely suspect',
               },
               {
                 grade: 'F',
-                range: '0–34',
+                range: '0-34',
                 color: '#dc2626',
                 label: 'Avoid',
               },
@@ -403,7 +403,7 @@ export default function Welcome() {
               {
                 icon: <RedditIcon size={22} />,
                 title: 'Reddit cross-reference',
-                body: 'We search real discussions across thousands of subreddits — harder to astroturf than stars.',
+                body: 'We search real discussions across thousands of subreddits - harder to astroturf than stars.',
               },
               {
                 icon: <DollarSign size={22} color="#22c55e" />,

@@ -237,7 +237,7 @@ export default function BlogPost() {
               margin: '0 auto 24px',
             }}
           >
-            ReviewLens automatically analyzes product reviews across Amazon, Walmart, eBay, and more — including
+            ReviewLens automatically analyzes product reviews across Amazon, Walmart, eBay, and more - including
             Reddit sentiment.
           </p>
           <a

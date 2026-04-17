@@ -31,7 +31,7 @@ interface SummaryResponse {
 }
 
 export default function Stats() {
-  // Token can come from URL (?t=xxx — bookmarkable) or a localStorage cache.
+  // Token can come from URL (?t=xxx - bookmarkable) or a localStorage cache.
   const [token, setToken] = useState<string>(() => {
     const urlToken = new URLSearchParams(window.location.hash.split('?')[1] ?? '').get('t');
     if (urlToken) localStorage.setItem('rl_stats_token', urlToken);

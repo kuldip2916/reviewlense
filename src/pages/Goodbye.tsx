@@ -5,7 +5,7 @@ import { Frown, ShieldCheck } from '../components/Icons';
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
 
-// Tally form — inline embed of form ID pbPA4E.
+// Tally form - inline embed of form ID pbPA4E.
 // Responses land in the Tally dashboard: https://tally.so/forms/pbPA4E/submissions
 const TALLY_EMBED_URL =
   'https://tally.so/embed/pbPA4E?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
@@ -89,7 +89,7 @@ export default function Goodbye() {
         </FadeIn>
       </section>
 
-      {/* Tally exit survey — inline embed, responses land in tally.so/forms/pbPA4E */}
+      {/* Tally exit survey - inline embed, responses land in tally.so/forms/pbPA4E */}
       <section
         style={{
           padding: '1rem 1.5rem 4rem',
@@ -173,7 +173,7 @@ export default function Goodbye() {
               }}
             >
               ReviewLens is free and always will be. No account, no tracking of
-              what you shop for — everything stays in your browser.
+              what you shop for - everything stays in your browser.
             </p>
             <a
               href={CHROME_STORE_URL}

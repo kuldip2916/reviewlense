@@ -274,7 +274,7 @@ export function Scale(p: IconProps) {
   );
 }
 
-/* ─── Reddit SVG (not stroke-based — this is the brand mark) ── */
+/* ─── Reddit SVG (not stroke-based - this is the brand mark) ── */
 
 export function RedditIcon({ size = 24, color, style }: IconProps) {
   return (

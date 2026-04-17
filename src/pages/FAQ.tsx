@@ -130,7 +130,7 @@ export default function FAQ() {
         },
         {
           q: 'Is ReviewLens free?',
-          a: 'Yes — 100% free, forever. There are no premium tiers, no subscriptions, and no hidden charges. The extension is open-source and will remain free.',
+          a: 'Yes - 100% free, forever. There are no premium tiers, no subscriptions, and no hidden charges. The extension is open-source and will remain free.',
         },
         {
           q: 'Do I need to create an account?',
@@ -146,7 +146,7 @@ export default function FAQ() {
         },
         {
           q: 'How accurate is the analysis?',
-          a: 'ReviewLens uses five independent signals that correlate strongly with fake-review patterns identified in academic research. No automated tool is perfect — we recommend using the score as one input, not the sole decision factor. For high-value purchases, reading a sample of Reddit discussions directly is always a good idea.',
+          a: 'ReviewLens uses five independent signals that correlate strongly with fake-review patterns identified in academic research. No automated tool is perfect - we recommend using the score as one input, not the sole decision factor. For high-value purchases, reading a sample of Reddit discussions directly is always a good idea.',
         },
       ],
     },
@@ -156,7 +156,7 @@ export default function FAQ() {
       items: [
         {
           q: 'What does the overall score mean?',
-          a: 'The overall score (0–100) is a weighted combination: 70% from the review authenticity analysis and 30% from Reddit sentiment. It\'s then adjusted for confidence — products with very few reviews get pulled toward 50 (neutral) to avoid misleading results. The score maps to letter grades: A (80+), B (65+), C (50+), D (35+), F (below 35). A lower score means more red flags — it doesn\'t necessarily mean the product is bad, just that its reviews may be unreliable.',
+          a: 'The overall score (0-100) is a weighted combination: 70% from the review authenticity analysis and 30% from Reddit sentiment. It\'s then adjusted for confidence - products with very few reviews get pulled toward 50 (neutral) to avoid misleading results. The score maps to letter grades: A (80+), B (65+), C (50+), D (35+), F (below 35). A lower score means more red flags - it doesn\'t necessarily mean the product is bad, just that its reviews may be unreliable.',
         },
         {
           q: 'What signals are used for the authenticity score?',
@@ -164,19 +164,19 @@ export default function FAQ() {
             <span>
               Seven signals contribute to the authenticity score:
               <br /><br />
-              <strong style={{ color: 'var(--text-primary)' }}>1. Verified purchase ratio</strong> — What % of reviews are from verified buyers.<br />
-              <strong style={{ color: 'var(--text-primary)' }}>2. Review burst detection</strong> — Abnormal spikes in review volume over time.<br />
-              <strong style={{ color: 'var(--text-primary)' }}>3. Rating clustering</strong> — Unnatural concentration at 5-stars with few mid-range ratings.<br />
-              <strong style={{ color: 'var(--text-primary)' }}>4. Text quality analysis</strong> — Detects generic, AI-generated, or low-quality review language (beyond just word count).<br />
-              <strong style={{ color: 'var(--text-primary)' }}>5. Sentiment-rating mismatch</strong> — Catches reviews where the star rating contradicts the text (e.g. 5 stars but says "terrible product").<br />
-              <strong style={{ color: 'var(--text-primary)' }}>6. Duplicate detection</strong> — Finds near-identical copy-pasted reviews from fake review farms.<br />
-              <strong style={{ color: 'var(--text-primary)' }}>7. Temporal decay</strong> — Recent red flags are weighted more heavily than old ones.
+              <strong style={{ color: 'var(--text-primary)' }}>1. Verified purchase ratio</strong> - What % of reviews are from verified buyers.<br />
+              <strong style={{ color: 'var(--text-primary)' }}>2. Review burst detection</strong> - Abnormal spikes in review volume over time.<br />
+              <strong style={{ color: 'var(--text-primary)' }}>3. Rating clustering</strong> - Unnatural concentration at 5-stars with few mid-range ratings.<br />
+              <strong style={{ color: 'var(--text-primary)' }}>4. Text quality analysis</strong> - Detects generic, AI-generated, or low-quality review language (beyond just word count).<br />
+              <strong style={{ color: 'var(--text-primary)' }}>5. Sentiment-rating mismatch</strong> - Catches reviews where the star rating contradicts the text (e.g. 5 stars but says "terrible product").<br />
+              <strong style={{ color: 'var(--text-primary)' }}>6. Duplicate detection</strong> - Finds near-identical copy-pasted reviews from fake review farms.<br />
+              <strong style={{ color: 'var(--text-primary)' }}>7. Temporal decay</strong> - Recent red flags are weighted more heavily than old ones.
             </span>
           ),
         },
         {
           q: 'How do the penalties compound?',
-          a: 'Unlike simple additive scoring (e.g. "minus 15 points per flag"), ReviewLens uses multiplicative compounding. Each red flag multiplies the score by a penalty factor (e.g. ×0.65 for high severity, ×0.80 for medium). This means a single flag barely affects the score, but multiple flags stacking together cause a much sharper drop — which accurately reflects how real fake-review schemes involve multiple correlated signals.',
+          a: 'Unlike simple additive scoring (e.g. "minus 15 points per flag"), ReviewLens uses multiplicative compounding. Each red flag multiplies the score by a penalty factor (e.g. ×0.65 for high severity, ×0.80 for medium). This means a single flag barely affects the score, but multiple flags stacking together cause a much sharper drop - which accurately reflects how real fake-review schemes involve multiple correlated signals.',
         },
         {
           q: 'What is the "confidence" indicator?',
@@ -184,15 +184,15 @@ export default function FAQ() {
         },
         {
           q: 'How does Reddit sentiment work?',
-          a: 'ReviewLens searches Reddit for posts that genuinely discuss the product using a multi-pass relevance scoring system: product ID matches score highest (+12), brand mentions score next (+5), and product nouns use word-boundary matching for precision. Over 60 spam subreddits are blocked, and product-review subreddits get a +3 bonus. Sentiment is time-weighted — recent posts matter more than old ones — and upvote-weighted so popular opinions carry more influence.',
+          a: 'ReviewLens searches Reddit for posts that genuinely discuss the product using a multi-pass relevance scoring system: product ID matches score highest (+12), brand mentions score next (+5), and product nouns use word-boundary matching for precision. Over 60 spam subreddits are blocked, and product-review subreddits get a +3 bonus. Sentiment is time-weighted - recent posts matter more than old ones - and upvote-weighted so popular opinions carry more influence.',
         },
         {
           q: 'Why is the Reddit score sometimes 50 even for good products?',
-          a: 'A score of 50 means ReviewLens found no Reddit discussions for this product. This is neutral — not positive or negative. It\'s common for niche or lesser-known products. When no posts are found, we default to a neutral 50 so the Reddit component doesn\'t unfairly penalise the overall score.',
+          a: 'A score of 50 means ReviewLens found no Reddit discussions for this product. This is neutral - not positive or negative. It\'s common for niche or lesser-known products. When no posts are found, we default to a neutral 50 so the Reddit component doesn\'t unfairly penalise the overall score.',
         },
         {
           q: 'What does "insufficient data" mean on the price chart?',
-          a: 'The price tracking feature works by recording the price each time you visit a product page. "Insufficient data" means this is the first (or second) time you\'ve visited — there isn\'t enough history yet to calculate a trend. Visit the same product a few days later and a trend will appear.',
+          a: 'The price tracking feature works by recording the price each time you visit a product page. "Insufficient data" means this is the first (or second) time you\'ve visited - there isn\'t enough history yet to calculate a trend. Visit the same product a few days later and a trend will appear.',
         },
       ],
     },
@@ -202,7 +202,7 @@ export default function FAQ() {
       items: [
         {
           q: 'What data does ReviewLens collect?',
-          a: 'ReviewLens collects no personal data. The only data stored is price history and cached analysis results — this is kept entirely inside your browser\'s own storage area (chrome.storage.local), managed and protected by Chrome itself. It\'s not saved as files on your hard drive, and it\'s never sent to any server operated by us.',
+          a: 'ReviewLens collects no personal data. The only data stored is price history and cached analysis results - this is kept entirely inside your browser\'s own storage area (chrome.storage.local), managed and protected by Chrome itself. It\'s not saved as files on your hard drive, and it\'s never sent to any server operated by us.',
         },
         {
           q: 'Do you sell or share my data?',
@@ -214,9 +214,9 @@ export default function FAQ() {
             <span>
               ReviewLens makes requests to:
               <br /><br />
-              • <strong style={{ color: 'var(--text-primary)' }}>Amazon\'s unofficial reviews API</strong> — to fetch review data<br />
-              • <strong style={{ color: 'var(--text-primary)' }}>Reddit\'s public search API</strong> — to find product discussions<br />
-              • <strong style={{ color: 'var(--text-primary)' }}>Walmart, eBay, Etsy</strong> — platform-specific review endpoints<br />
+              • <strong style={{ color: 'var(--text-primary)' }}>Amazon\'s unofficial reviews API</strong> - to fetch review data<br />
+              • <strong style={{ color: 'var(--text-primary)' }}>Reddit\'s public search API</strong> - to find product discussions<br />
+              • <strong style={{ color: 'var(--text-primary)' }}>Walmart, eBay, Etsy</strong> - platform-specific review endpoints<br />
               <br />
               No requests are made to ReviewLens servers. All processing happens locally in your browser.
             </span>
@@ -224,7 +224,7 @@ export default function FAQ() {
         },
         {
           q: 'Where exactly is my data stored?',
-          a: 'All data is stored in chrome.storage.local — a secure storage area built into Chrome itself, tied to the extension. It\'s not stored as files on your computer\'s hard drive or in a database. Think of it like the extension\'s private memory that only Chrome can access. When you uninstall the extension, this data is automatically deleted.',
+          a: 'All data is stored in chrome.storage.local - a secure storage area built into Chrome itself, tied to the extension. It\'s not stored as files on your computer\'s hard drive or in a database. Think of it like the extension\'s private memory that only Chrome can access. When you uninstall the extension, this data is automatically deleted.',
         },
         {
           q: 'Can I delete stored price history?',
@@ -241,7 +241,7 @@ export default function FAQ() {
       label: 'Technical',
       items: [
         {
-          q: 'Why does analysis sometimes take 10–15 seconds?',
+          q: 'Why does analysis sometimes take 10-15 seconds?',
           a: 'ReviewLens runs several analyses in parallel: review fetching and scoring, Reddit search across multiple queries, and price tracking. The Reddit search is typically the slowest step, as it queries multiple Reddit API endpoints. Results are cached for 24 hours so repeat visits are instant.',
         },
         {
@@ -250,15 +250,15 @@ export default function FAQ() {
         },
         {
           q: 'Does it work in Incognito mode?',
-          a: 'Not by default — Chrome extensions are disabled in Incognito unless you explicitly allow it. Go to chrome://extensions → ReviewLens → Details → toggle "Allow in Incognito" on.',
+          a: 'Not by default - Chrome extensions are disabled in Incognito unless you explicitly allow it. Go to chrome://extensions → ReviewLens → Details → toggle "Allow in Incognito" on.',
         },
         {
           q: 'The price is showing wrong. How does price extraction work?',
-          a: 'ReviewLens runs a small script inside the product page\'s DOM to extract the displayed price. If the page uses an unusual layout or lazy-loads pricing, the script may not find it. In that case, no price is recorded for that visit — the chart will simply have one less data point.',
+          a: 'ReviewLens runs a small script inside the product page\'s DOM to extract the displayed price. If the page uses an unusual layout or lazy-loads pricing, the script may not find it. In that case, no price is recorded for that visit - the chart will simply have one less data point.',
         },
         {
           q: 'Is the source code available?',
-          a: 'Yes! ReviewLens is open-source. You can review the code, report issues, or contribute on GitHub. We believe in full transparency — especially for a tool that touches your shopping data.',
+          a: 'Yes! ReviewLens is open-source. You can review the code, report issues, or contribute on GitHub. We believe in full transparency - especially for a tool that touches your shopping data.',
         },
       ],
     },
@@ -376,7 +376,7 @@ export default function FAQ() {
               Still have questions?
             </h3>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
-              Open an issue on GitHub or reach out — we read everything.
+              Open an issue on GitHub or reach out - we read everything.
             </p>
             <a
               href="https://github.com"

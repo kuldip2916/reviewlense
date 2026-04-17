@@ -30,7 +30,7 @@ export default function FakeAmazonReviewsPost() {
             marginBottom: 0,
           }}
         >
-          Fake reviews have gotten smarter. Here are the patterns to watch for — and what tools can help you see through them.
+          Fake reviews have gotten smarter. Here are the patterns to watch for - and what tools can help you see through them.
         </p>
       </section>
 
@@ -49,7 +49,7 @@ export default function FakeAmazonReviewsPost() {
           <p style={{ marginBottom: 0, fontSize: 16, color: '#e2e8f0' }}>
             <strong>The problem is massive:</strong> The FTC estimated the fake review market at{' '}
             <strong>$791 billion globally</strong> in 2023. Amazon, Walmart, and eBay are ground zero for
-            this manipulation — and it's only getting more sophisticated.
+            this manipulation - and it's only getting more sophisticated.
           </p>
         </div>
         <p style={{ marginBottom: 24 }}>
@@ -124,7 +124,7 @@ export default function FakeAmazonReviewsPost() {
           3. Verified Purchase Badges (Can Be Faked)
         </h2>
         <p style={{ marginBottom: 16 }}>
-          A verified purchase badge used to mean something. Sellers figured that out — now they buy their
+          A verified purchase badge used to mean something. Sellers figured that out - now they buy their
           own products in bulk, leave fake reviews, and request refunds.
         </p>
         <p style={{ marginBottom: 0 }}>
@@ -221,7 +221,7 @@ export default function FakeAmazonReviewsPost() {
         </h2>
         <p style={{ marginBottom: 16 }}>
           Spotting these patterns manually takes time. That's why browser extensions like ReviewLens exist
-          — they analyze review data in real-time and flag suspicious products instantly.
+          - they analyze review data in real-time and flag suspicious products instantly.
         </p>
         <p style={{ marginBottom: 24 }}>
           A good review checker looks at all of these signals at once:

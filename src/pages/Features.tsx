@@ -330,7 +330,7 @@ function ComparisonTable() {
                 <td key={t} style={{ textAlign: 'center', padding: '0.75rem 1rem' }}>
                   {support[t][i]
                     ? <span style={{ color: '#22c55e', fontSize: '1rem' }}>✓</span>
-                    : <span style={{ color: '#475569', fontSize: '1rem' }}>–</span>
+                    : <span style={{ color: '#475569', fontSize: '1rem' }}>-</span>
                   }
                 </td>
               ))}
@@ -351,13 +351,13 @@ export default function Features() {
       iconEl: <ShieldCheck size={28} color="#6366f1" />,
       title: 'Review Authenticity Score',
       tagline: 'Core Signal',
-      description: 'Our scoring engine runs 7 independent checks on every product\'s reviews and combines them using compounding penalties — so multiple red flags stack exponentially, not just add up. The result is a 0–100 score with an A–F grade you can understand at a glance.',
+      description: 'Our scoring engine runs 7 independent checks on every product\'s reviews and combines them using compounding penalties - so multiple red flags stack exponentially, not just add up. The result is a 0-100 score with an A-F grade you can understand at a glance.',
       bullets: [
         'Verified vs. unverified purchase ratio weighting',
         'Sentiment-rating mismatch detection (5 stars but negative text = caught)',
         'Duplicate and near-duplicate review detection via text similarity',
         'Review text quality analysis beyond simple word count',
-        'Compounding penalties — multiple red flags multiply together',
+        'Compounding penalties - multiple red flags multiply together',
         'Confidence indicator for products with few reviews',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
@@ -367,13 +367,13 @@ export default function Features() {
       iconEl: <RedditIcon size={28} />,
       title: 'Reddit Community Sentiment',
       tagline: 'Social Signal',
-      description: 'While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens searches across thousands of subreddits to find genuine community opinions — with smart relevance scoring that filters out unrelated posts and time-weighted sentiment that prioritises recent discussions.',
+      description: 'While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens searches across thousands of subreddits to find genuine community opinions - with smart relevance scoring that filters out unrelated posts and time-weighted sentiment that prioritises recent discussions.',
       bullets: [
         'Multi-subreddit search with word-boundary relevance scoring',
         '60+ spam subreddits blocked (deal sites, memes, affiliate posts)',
         'Product ID + brand + noun matching for precision',
-        'Upvote-weighted sentiment — popular posts carry more influence',
-        'Temporal weighting — recent posts matter more than old ones',
+        'Upvote-weighted sentiment - popular posts carry more influence',
+        'Temporal weighting - recent posts matter more than old ones',
         'Direct links to source Reddit discussions',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
@@ -384,14 +384,14 @@ export default function Features() {
       iconEl: <DollarSign size={28} color="#22c55e" />,
       title: 'Price Trend Tracking',
       tagline: 'Price Signal',
-      description: 'Ever wonder if that "50% off sale" is real? ReviewLens tracks the price every time you visit a product, building a history to expose artificial inflation — a common dark pattern where sellers inflate the "original" price to make discounts look bigger.',
+      description: 'Ever wonder if that "50% off sale" is real? ReviewLens tracks the price every time you visit a product, building a history to expose artificial inflation - a common dark pattern where sellers inflate the "original" price to make discounts look bigger.',
       bullets: [
         'Automatic price capture on every page visit',
         'Up to 90 days / 60 data points per product',
         'Visual sparkline chart with min / avg / high stats',
         '7-day trend direction and percentage change',
         'Multi-currency detection (USD, EUR, GBP, AUD, + 20 more)',
-        'All data stored in your browser — never on our servers',
+        'All data stored in your browser - never on our servers',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
       accent: '#22c55e',
@@ -400,12 +400,12 @@ export default function Features() {
       iconEl: <Zap size={28} color="#ef4444" />,
       title: 'Review Burst Detection',
       tagline: 'Timing Signal',
-      description: 'Fake review farms typically operate in bursts — flooding a product with dozens of 5-star reviews within a 24–48 hour window. ReviewLens analyses the temporal distribution of reviews and flags statistically abnormal spikes, with recent bursts weighted more heavily than older ones.',
+      description: 'Fake review farms typically operate in bursts - flooding a product with dozens of 5-star reviews within a 24-48 hour window. ReviewLens analyses the temporal distribution of reviews and flags statistically abnormal spikes, with recent bursts weighted more heavily than older ones.',
       bullets: [
         'Chronological review velocity charting',
         'Statistical outlier detection for review clusters',
         'Severity rating: low / medium / high',
-        'Temporal decay — recent bursts flagged more aggressively',
+        'Temporal decay - recent bursts flagged more aggressively',
         'Multi-window analysis (daily, weekly, monthly)',
       ],
       platforms: ['Amazon', 'Walmart', 'eBay', 'Etsy'],
@@ -418,7 +418,7 @@ export default function Features() {
       tagline: 'Pattern Signal',
       description: 'Real products have a natural bell-curve distribution of ratings. When 85%+ of ratings cluster at 5 stars with almost no 2 or 3 star reviews, that\'s a red flag. ReviewLens detects these unnatural patterns and flags them clearly.',
       bullets: [
-        'Full 1–5 star distribution visualisation',
+        'Full 1-5 star distribution visualisation',
         'Suspicious clustering threshold detection',
         'Bimodal distribution analysis (love/hate splits)',
         'Comparison against category averages',
@@ -448,13 +448,13 @@ export default function Features() {
           </h1>
           <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
             ReviewLens runs 7 review checks, cross-references with Reddit community sentiment,
-            and tracks price history — giving you a complete picture sellers don't want you to see.
+            and tracks price history - giving you a complete picture sellers don't want you to see.
             All scoring is transparent, compounding, and confidence-adjusted.
           </p>
         </FadeIn>
       </section>
 
-      {/* Grade reference — linked from the in-page overlay "What does this mean?" */}
+      {/* Grade reference - linked from the in-page overlay "What does this mean?" */}
       <section
         id="grades"
         style={{ padding: '1rem 1.5rem 3rem', maxWidth: '900px', margin: '0 auto', scrollMarginTop: '5rem' }}
@@ -465,7 +465,7 @@ export default function Features() {
               How the grade is calculated
             </h2>
             <p style={{ color: 'var(--text-secondary, var(--sub))', marginBottom: '1.5rem', fontSize: 15 }}>
-              Every product gets a 0–100 score blending{' '}
+              Every product gets a 0-100 score blending{' '}
               <strong style={{ color: 'var(--accent)' }}>review authenticity (70%)</strong>{' '}
               and <strong style={{ color: '#f59e0b' }}>Reddit community sentiment (30%)</strong>.
               The letter grade is a quick read on that blended score.
@@ -478,11 +478,11 @@ export default function Features() {
               }}
             >
               {[
-                { grade: 'A', range: '80–100', color: '#22c55e', label: 'Trustworthy' },
-                { grade: 'B', range: '65–79',  color: '#84cc16', label: 'Mostly solid' },
-                { grade: 'C', range: '50–64',  color: '#f59e0b', label: 'Be cautious' },
-                { grade: 'D', range: '35–49',  color: '#ef4444', label: 'Likely suspect' },
-                { grade: 'F', range: '0–34',   color: '#dc2626', label: 'Avoid' },
+                { grade: 'A', range: '80-100', color: '#22c55e', label: 'Trustworthy' },
+                { grade: 'B', range: '65-79',  color: '#84cc16', label: 'Mostly solid' },
+                { grade: 'C', range: '50-64',  color: '#f59e0b', label: 'Be cautious' },
+                { grade: 'D', range: '35-49',  color: '#ef4444', label: 'Likely suspect' },
+                { grade: 'F', range: '0-34',   color: '#dc2626', label: 'Avoid' },
               ].map(g => (
                 <div
                   key={g.grade}
@@ -551,7 +551,7 @@ export default function Features() {
               Ready to shop smarter?
             </h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-              Add ReviewLens to Chrome for free — no account, no data collection, no catch.
+              Add ReviewLens to Chrome for free - no account, no data collection, no catch.
             </p>
             <a
               href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei"
@@ -563,7 +563,7 @@ export default function Features() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
               </svg>
-              Add to Chrome — It's Free
+              Add to Chrome - It's Free
             </a>
           </div>
         </FadeIn>

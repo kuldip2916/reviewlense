@@ -345,7 +345,7 @@ function SignalBar({ label, value, color }: { label: string; value: number; colo
 const redditResults = [
   {
     subreddit: 'r/BuyItForLife',
-    title: 'Finally found a water bottle that actually lasts — 3 years and zero issues',
+    title: 'Finally found a water bottle that actually lasts - 3 years and zero issues',
     excerpt: 'Been using this for hiking and daily commute. The seal is still perfect, no rust, no smell. Honestly the best $28 I\'ve spent.',
     upvotes: 2847,
     comments: 143,
@@ -355,7 +355,7 @@ const redditResults = [
   },
   {
     subreddit: 'r/Frugal',
-    title: 'This product is genuinely excellent — bought three as gifts',
+    title: 'This product is genuinely excellent - bought three as gifts',
     excerpt: 'Not an ad, just genuinely impressed. My whole family uses these now. Way better than the branded ones at twice the price.',
     upvotes: 1204,
     comments: 67,
@@ -366,7 +366,7 @@ const redditResults = [
   {
     subreddit: 'r/mildlyinfuriating',
     title: 'Why does the lid on this thing crack after 6 months? Third time replacing it.',
-    excerpt: 'Love the bottle but the lid design is genuinely terrible. Every single one I\'ve had has cracked at the hinge. Check the 1-star reviews — all the same issue.',
+    excerpt: 'Love the bottle but the lid design is genuinely terrible. Every single one I\'ve had has cracked at the hinge. Check the 1-star reviews - all the same issue.',
     upvotes: 889,
     comments: 214,
     sentiment: 'negative' as const,
@@ -375,7 +375,7 @@ const redditResults = [
   },
   {
     subreddit: 'r/ZeroWaste',
-    title: 'Switched to this from plastic — highly recommend for eco-conscious folks',
+    title: 'Switched to this from plastic - highly recommend for eco-conscious folks',
     excerpt: 'Durable, easy to clean, and the company uses recycled packaging. A few people in comments mentioned the lid issue but mine has been fine so far.',
     upvotes: 632,
     comments: 41,
@@ -511,7 +511,7 @@ function RedditSection() {
               <span className="gradient-text">Real opinions.</span>
             </h2>
             <p className="section-sub" style={{ marginTop: 12, maxWidth: 520 }}>
-              While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens scans thousands of subreddits to surface what the community <em>actually</em> thinks — the good and the bad.
+              While star ratings can be gamed, Reddit discussions rarely lie. ReviewLens scans thousands of subreddits to surface what the community <em>actually</em> thinks - the good and the bad.
             </p>
           </div>
 
@@ -576,21 +576,21 @@ function RedditSection() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Search size={18} />
             <span style={{ fontSize: 13, color: '#64748b' }}>
-              <strong style={{ color: '#94a3b8' }}>Spam-filtered</strong> — deal-posting and affiliate subreddits excluded
+              <strong style={{ color: '#94a3b8' }}>Spam-filtered</strong> - deal-posting and affiliate subreddits excluded
             </span>
           </div>
           <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Scale size={18} />
             <span style={{ fontSize: 13, color: '#64748b' }}>
-              <strong style={{ color: '#94a3b8' }}>Weighted by upvotes</strong> — more votes = more influence on score
+              <strong style={{ color: '#94a3b8' }}>Weighted by upvotes</strong> - more votes = more influence on score
             </span>
           </div>
           <div style={{ width: 1, height: 24, background: 'var(--border)' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Target size={18} />
             <span style={{ fontSize: 13, color: '#64748b' }}>
-              <strong style={{ color: '#94a3b8' }}>Relevance-scored</strong> — ASIN, brand &amp; product noun matching
+              <strong style={{ color: '#94a3b8' }}>Relevance-scored</strong> - ASIN, brand &amp; product noun matching
             </span>
           </div>
         </div>
@@ -610,7 +610,7 @@ export default function Home() {
       label: 'Amazon', platform: 'Amazon', score: 34, price: '$24.99',
       flags: [
         { type: 'burst',      sev: 'high'   as const, label: 'Sudden review spike detected' },
-        { type: 'cluster',    sev: 'medium' as const, label: '94% five-star ratings — unusual' },
+        { type: 'cluster',    sev: 'medium' as const, label: '94% five-star ratings - unusual' },
         { type: 'reddit',     sev: 'low'    as const, label: 'No Reddit discussions found' },
       ],
       reddit: {
@@ -618,9 +618,9 @@ export default function Home() {
         postCount: 5,
         topSubreddits: ['r/amazonreviews', 'r/fakespotreviews', 'r/consumeradvice'],
         posts: [
-          { subreddit: 'r/amazonreviews', title: 'This product has tons of fake 5-star reviews — beware', sentiment: 'negative' as const, score: 342, url: 'https://reddit.com/r/amazonreviews/comments/abc123' },
+          { subreddit: 'r/amazonreviews', title: 'This product has tons of fake 5-star reviews - beware', sentiment: 'negative' as const, score: 342, url: 'https://reddit.com/r/amazonreviews/comments/abc123' },
           { subreddit: 'r/consumeradvice', title: 'Bought this and it broke after 2 days, reviews are misleading', sentiment: 'negative' as const, score: 187, url: 'https://reddit.com/r/consumeradvice/comments/def456' },
-          { subreddit: 'r/fakespotreviews', title: 'Classic review manipulation — 200+ reviews in one week', sentiment: 'negative' as const, score: 95, url: 'https://reddit.com/r/fakespotreviews/comments/ghi789' },
+          { subreddit: 'r/fakespotreviews', title: 'Classic review manipulation - 200+ reviews in one week', sentiment: 'negative' as const, score: 95, url: 'https://reddit.com/r/fakespotreviews/comments/ghi789' },
         ],
       },
     },
@@ -638,7 +638,7 @@ export default function Home() {
         posts: [
           { subreddit: 'r/BuyItForLife', title: 'This brand has been reliable for years, great value', sentiment: 'positive' as const, score: 512, url: 'https://reddit.com/r/BuyItForLife/comments/jkl012' },
           { subreddit: 'r/walmart', title: 'Solid product, been using it for 6 months no issues', sentiment: 'positive' as const, score: 234, url: 'https://reddit.com/r/walmart/comments/mno345' },
-          { subreddit: 'r/deals', title: 'Decent deal but wait for a rollback — often drops to $29', sentiment: 'neutral' as const, score: 128, url: 'https://reddit.com/r/deals/comments/pqr678' },
+          { subreddit: 'r/deals', title: 'Decent deal but wait for a rollback - often drops to $29', sentiment: 'neutral' as const, score: 128, url: 'https://reddit.com/r/deals/comments/pqr678' },
         ],
       },
     },
@@ -654,7 +654,7 @@ export default function Home() {
         postCount: 3,
         topSubreddits: ['r/Ebay', 'r/Flipping', 'r/gadgets'],
         posts: [
-          { subreddit: 'r/Ebay', title: 'Hit or miss with this seller — packaging was poor', sentiment: 'negative' as const, score: 76, url: 'https://reddit.com/r/Ebay/comments/stu901' },
+          { subreddit: 'r/Ebay', title: 'Hit or miss with this seller - packaging was poor', sentiment: 'negative' as const, score: 76, url: 'https://reddit.com/r/Ebay/comments/stu901' },
           { subreddit: 'r/gadgets', title: 'Works fine for the price, nothing special', sentiment: 'neutral' as const, score: 145, url: 'https://reddit.com/r/gadgets/comments/vwx234' },
           { subreddit: 'r/Flipping', title: 'Decent item if you get a legit unit, some counterfeits out there', sentiment: 'neutral' as const, score: 63, url: 'https://reddit.com/r/Flipping/comments/yza567' },
         ],
@@ -672,7 +672,7 @@ export default function Home() {
         postCount: 12,
         topSubreddits: ['r/Etsy', 'r/crafts', 'r/handmade'],
         posts: [
-          { subreddit: 'r/Etsy', title: 'This shop is amazing — beautiful craftsmanship and fast shipping', sentiment: 'positive' as const, score: 678, url: 'https://reddit.com/r/Etsy/comments/bcd890' },
+          { subreddit: 'r/Etsy', title: 'This shop is amazing - beautiful craftsmanship and fast shipping', sentiment: 'positive' as const, score: 678, url: 'https://reddit.com/r/Etsy/comments/bcd890' },
           { subreddit: 'r/crafts', title: 'Ordered a custom piece and it exceeded expectations', sentiment: 'positive' as const, score: 423, url: 'https://reddit.com/r/crafts/comments/efg123' },
           { subreddit: 'r/handmade', title: 'Love supporting small makers like this one, highly recommend', sentiment: 'positive' as const, score: 289, url: 'https://reddit.com/r/handmade/comments/hij456' },
         ],
@@ -717,7 +717,7 @@ export default function Home() {
               </h1>
 
               <p style={{ fontSize: 18, color: '#64748b', lineHeight: 1.75, marginBottom: 36, maxWidth: 480 }}>
-                ReviewLens instantly detects manipulation patterns, suspicious rating clusters, and fake buyer behavior — then cross-checks with real Reddit community sentiment.
+                ReviewLens instantly detects manipulation patterns, suspicious rating clusters, and fake buyer behavior - then cross-checks with real Reddit community sentiment.
               </p>
 
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -725,7 +725,7 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                   </svg>
-                  Add to Chrome — It's Free
+                  Add to Chrome - It's Free
                 </a>
                 <a href="#how-it-works" className="btn-secondary">
                   See how it works →
@@ -813,7 +813,7 @@ export default function Home() {
             <Step n={2} iconEl={<Search size={24} />} title="Click the extension icon"
               desc="Hit Analyze and ReviewLens fetches review data, checks Reddit for real discussion, and runs 5 AI-powered detection signals." />
             <Step n={3} iconEl={<BarChart size={24} />} title="See your trust score"
-              desc="Get a clear A–F grade with a detailed breakdown of every red flag found — and a price trend history as you revisit over time." />
+              desc="Get a clear A-F grade with a detailed breakdown of every red flag found - and a price trend history as you revisit over time." />
           </div>
         </div>
       </section>
@@ -830,22 +830,22 @@ export default function Home() {
             <FeatureCard
               iconEl={<TrendingUp size={24} />} color="#ef4444" tag="Signal 1"
               title="Review Burst Detection"
-              desc="Spots unnatural spikes in review volume — a classic sign of sellers buying fake reviews in bulk overnight."
+              desc="Spots unnatural spikes in review volume - a classic sign of sellers buying fake reviews in bulk overnight."
             />
             <FeatureCard
               iconEl={<Star size={24} />} color="#f59e0b" tag="Signal 2"
               title="Rating Clustering Analysis"
-              desc="Flags products where 90%+ of ratings are 5-stars with almost no 2–3 star reviews — an impossible natural distribution."
+              desc="Flags products where 90%+ of ratings are 5-stars with almost no 2-3 star reviews - an impossible natural distribution."
             />
             <FeatureCard
               iconEl={<CheckCircle size={24} />} color="#22c55e" tag="Signal 3"
               title="Verified Purchase Ratio"
-              desc="Calculates what proportion of reviews actually came from verified buyers — unverified reviews carry almost no trust weight."
+              desc="Calculates what proportion of reviews actually came from verified buyers - unverified reviews carry almost no trust weight."
             />
             <FeatureCard
               iconEl={<Type size={24} />} color="#6366f1" tag="Signal 4"
               title="Text Quality Analysis"
-              desc="Goes beyond word count — detects generic phrasing, excessive caps, low specificity, and AI-generated language patterns in reviews."
+              desc="Goes beyond word count - detects generic phrasing, excessive caps, low specificity, and AI-generated language patterns in reviews."
             />
             <FeatureCard
               iconEl={<Frown size={24} />} color="#ec4899" tag="Signal 5"
@@ -855,7 +855,7 @@ export default function Home() {
             <FeatureCard
               iconEl={<Copy size={24} />} color="#8b5cf6" tag="Signal 6"
               title="Duplicate Review Detection"
-              desc="Finds near-identical copy-pasted reviews using text similarity — a hallmark of fake review farms."
+              desc="Finds near-identical copy-pasted reviews using text similarity - a hallmark of fake review farms."
             />
             <FeatureCard
               iconEl={<RedditIcon size={24} />} color="#f97316" tag="Signal 7"
@@ -885,7 +885,7 @@ export default function Home() {
               See what's<br /><span className="gradient-text">really going on</span>
             </h2>
             <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.7, marginBottom: 28 }}>
-              Every signal is weighted and combined into a single, honest trust score. No guesswork — just data.
+              Every signal is weighted and combined into a single, honest trust score. No guesswork - just data.
             </p>
 
             <div style={{
@@ -940,7 +940,7 @@ export default function Home() {
             <div className="section-tag">Scoring Methodology</div>
             <h2 className="section-title">How your trust score<br /><span className="gradient-text">is calculated</span></h2>
             <p className="section-sub" style={{ margin: '12px auto 0', maxWidth: 600 }}>
-              No black boxes. Here's exactly how ReviewLens turns raw review data into a score you can trust — explained in plain English.
+              No black boxes. Here's exactly how ReviewLens turns raw review data into a score you can trust - explained in plain English.
             </p>
           </div>
 
@@ -1014,7 +1014,7 @@ export default function Home() {
                 </div>
               </div>
               {[
-                { iconEl: <TrendingUp size={16} />, label: 'Review burst detection', desc: 'Spots unnatural spikes — 50 reviews in one day is a red flag' },
+                { iconEl: <TrendingUp size={16} />, label: 'Review burst detection', desc: 'Spots unnatural spikes - 50 reviews in one day is a red flag' },
                 { iconEl: <Star size={16} />, label: 'Rating clustering', desc: '95% five-stars with no 2-3 stars? That\'s not natural' },
                 { iconEl: <CheckCircle size={16} />, label: 'Verified purchase ratio', desc: 'More unverified reviewers = less trustworthy' },
                 { iconEl: <Type size={16} />, label: 'Text quality analysis', desc: 'Detects generic, copy-paste, or AI-generated review language' },
@@ -1035,7 +1035,7 @@ export default function Home() {
                 background: 'rgba(99,102,241,0.06)', border: '1px solid rgba(99,102,241,0.15)',
                 fontSize: 12, color: '#94a3b8', lineHeight: 1.5,
               }}>
-                Each red flag <strong style={{ color: '#c7d2fe' }}>multiplies</strong> the penalty — so two problems compound rather than just add up. One flag barely affects the score, but three signals together drop it significantly.
+                Each red flag <strong style={{ color: '#c7d2fe' }}>multiplies</strong> the penalty - so two problems compound rather than just add up. One flag barely affects the score, but three signals together drop it significantly.
               </div>
             </div>
 
@@ -1057,11 +1057,11 @@ export default function Home() {
                 </div>
               </div>
               {[
-                { iconEl: <Search size={16} />, label: 'Smart product matching', desc: 'Uses product ID, brand name, and key nouns — not just the full title' },
+                { iconEl: <Search size={16} />, label: 'Smart product matching', desc: 'Uses product ID, brand name, and key nouns - not just the full title' },
                 { iconEl: <Target size={16} />, label: 'Relevance scoring', desc: 'Every Reddit post gets a relevance score. Low-relevance posts are filtered out' },
                 { iconEl: <Filter size={16} />, label: 'Spam subreddit filter', desc: '60+ deal-posting, meme, and off-topic subreddits are blocked automatically' },
                 { iconEl: <ArrowUpCircle size={16} />, label: 'Upvote weighting', desc: 'A post with 2,000 upvotes influences the score more than one with 3' },
-                { iconEl: <Clock size={16} />, label: 'Time-weighted sentiment', desc: 'Recent posts matter more — a review from last month outweighs one from 2 years ago' },
+                { iconEl: <Clock size={16} />, label: 'Time-weighted sentiment', desc: 'Recent posts matter more - a review from last month outweighs one from 2 years ago' },
                 { iconEl: <MessageCircle size={16} />, label: 'Positive/negative language', desc: 'We scan each post for sentiment signals using word-boundary keyword matching' },
               ].map(s => (
                 <div key={s.label} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 14 }}>
@@ -1087,11 +1087,11 @@ export default function Home() {
             <div style={{ fontSize: 11, fontWeight: 700, color: '#6366f1', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Score to Grade</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
               {[
-                { grade: 'A', range: '80-100', color: '#22c55e', desc: 'Highly trustworthy — buy with confidence' },
-                { grade: 'B', range: '65-79', color: '#84cc16', desc: 'Mostly trustworthy — minor concerns' },
-                { grade: 'C', range: '50-64', color: '#f59e0b', desc: 'Mixed signals — read reviews carefully' },
-                { grade: 'D', range: '35-49', color: '#ef4444', desc: 'Suspicious — several red flags detected' },
-                { grade: 'F', range: '0-34', color: '#dc2626', desc: 'Avoid — strong manipulation signals' },
+                { grade: 'A', range: '80-100', color: '#22c55e', desc: 'Highly trustworthy - buy with confidence' },
+                { grade: 'B', range: '65-79', color: '#84cc16', desc: 'Mostly trustworthy - minor concerns' },
+                { grade: 'C', range: '50-64', color: '#f59e0b', desc: 'Mixed signals - read reviews carefully' },
+                { grade: 'D', range: '35-49', color: '#ef4444', desc: 'Suspicious - several red flags detected' },
+                { grade: 'F', range: '0-34', color: '#dc2626', desc: 'Avoid - strong manipulation signals' },
               ].map(g => (
                 <div key={g.grade} style={{
                   flex: '1 1 160px', padding: '14px 16px', borderRadius: 12,
@@ -1120,7 +1120,7 @@ export default function Home() {
           }}>
             <Lock size={18} style={{ flexShrink: 0 }} />
             <span style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5 }}>
-              <strong style={{ color: '#e2e8f0' }}>All data stays in your browser.</strong> Scores, price history, and analysis results are stored in <code style={{ background: 'rgba(99,102,241,0.12)', padding: '2px 6px', borderRadius: 4, fontSize: 11, color: '#a5b4fc' }}>chrome.storage.local</code> — a secure storage area managed by Chrome itself. Nothing is sent to our servers because we don't have any.
+              <strong style={{ color: '#e2e8f0' }}>All data stays in your browser.</strong> Scores, price history, and analysis results are stored in <code style={{ background: 'rgba(99,102,241,0.12)', padding: '2px 6px', borderRadius: 4, fontSize: 11, color: '#a5b4fc' }}>chrome.storage.local</code> - a secure storage area managed by Chrome itself. Nothing is sent to our servers because we don't have any.
             </span>
           </div>
         </div>
@@ -1173,13 +1173,13 @@ export default function Home() {
               Stop trusting<br /><span className="gradient-text">fake 5-star reviews</span>
             </h2>
             <p style={{ fontSize: 16, color: '#64748b', marginBottom: 36, lineHeight: 1.7 }}>
-              Install ReviewLens for free and shop with confidence. Available on Chrome — works on Amazon, Walmart, eBay, and Etsy.
+              Install ReviewLens for free and shop with confidence. Available on Chrome - works on Amazon, Walmart, eBay, and Etsy.
             </p>
             <a href="https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
               </svg>
-              Add to Chrome — Free
+              Add to Chrome - Free
             </a>
             <div style={{ fontSize: 12, color: '#374151', marginTop: 16 }}>
               No account · No subscription · No data collected

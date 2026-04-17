@@ -108,7 +108,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a href={CHROME_STORE_URL} className="btn-primary" style={{ marginTop: 16, width: '100%', justifyContent: 'center' }}>
-            Add to Chrome — Free
+            Add to Chrome - Free
           </a>
         </div>
       )}

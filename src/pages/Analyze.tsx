@@ -14,7 +14,7 @@ import {
   Platform,
 } from '../components/analyze/types';
 
-// Cloudflare Worker URL — deployed from /analyzer-worker/.
+// Cloudflare Worker URL - deployed from /analyzer-worker/.
 const ANALYZE_ENDPOINT = 'https://reviewlens-analyzer.reviewlens-telemetry.workers.dev/analyze';
 
 type State =
@@ -34,7 +34,7 @@ function detectPlatformFromUrl(url: string): Platform | null {
 
 export default function Analyze() {
   // Read ?url= from the hash segment. HashRouter gives us `#/analyze?url=...`
-  // but useSearchParams in HashRouter doesn't cover that — parse manually.
+  // but useSearchParams in HashRouter doesn't cover that - parse manually.
   const initialUrl = (() => {
     const hash = window.location.hash;
     const q = hash.indexOf('?');
@@ -66,7 +66,7 @@ export default function Analyze() {
     } catch {
       setState({
         kind: 'error',
-        error: { error: 'INVALID_URL', message: 'Network error — please try again.' },
+        error: { error: 'INVALID_URL', message: 'Network error - please try again.' },
       });
     }
   }

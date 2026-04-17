@@ -49,7 +49,7 @@ export default function FakespotAlternativesPost() {
           What Happened to Fakespot?
         </h2>
         <p style={{ marginBottom: 16 }}>
-          In July 2025, Fakespot — the popular fake review detector — <strong>shut down completely</strong>.
+          In July 2025, Fakespot - the popular fake review detector - <strong>shut down completely</strong>.
           ReviewMeta, another long-standing tool, is also gone. The market for review analysis tools has
           consolidated, which means fewer options for shoppers who want to verify reviews before buying.
         </p>
@@ -137,7 +137,7 @@ export default function FakespotAlternativesPost() {
           </p>
         </div>
         <p style={{ marginBottom: 12 }}>
-          <strong>What it does:</strong> Provides a trust score (0–100) for Amazon products based on review
+          <strong>What it does:</strong> Provides a trust score (0-100) for Amazon products based on review
           analysis and seller history.
         </p>
         <p style={{ marginBottom: 12 }}>
@@ -381,7 +381,7 @@ export default function FakespotAlternativesPost() {
         </h3>
         <p style={{ marginBottom: 16 }}>
           <strong>If you shop across multiple platforms:</strong> Use ReviewLens. It's the only tool that
-          works on Amazon, Walmart, eBay, and beyond — and it includes Reddit sentiment analysis, which no
+          works on Amazon, Walmart, eBay, and beyond - and it includes Reddit sentiment analysis, which no
           other tool offers.
         </p>
         <p style={{ marginBottom: 0 }}>
