@@ -230,7 +230,58 @@ export default function Privacy() {
             </ol>
           </Section>
 
-          <Section title="6. Children's Privacy">
+          <Section title="6. Anonymous Usage Telemetry">
+            <p style={{ marginBottom: '1rem' }}>
+              Starting with v1.7, ReviewLens sends a small number of anonymous
+              aggregate counters to our own Cloudflare Worker so we can
+              understand how the extension is used and where to improve it.
+              This is the entire list of what's sent:
+            </p>
+            <ul style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
+              <li>
+                <strong style={{ color: 'var(--text-primary)' }}>install</strong> —
+                the extension was installed. Payload: <code>{'{ version, locale }'}</code>.
+              </li>
+              <li>
+                <strong style={{ color: 'var(--text-primary)' }}>first_analysis</strong> —
+                the first product you ever analyzed. Payload: <code>{'{ platform, grade }'}</code>
+                — e.g. <code>amazon</code>, <code>B</code>. Never the product ID or URL.
+              </li>
+              <li>
+                <strong style={{ color: 'var(--text-primary)' }}>analysis_complete</strong> —
+                any subsequent analysis. Payload: <code>{'{ platform, grade, flag_count }'}</code>.
+              </li>
+              <li>
+                <strong style={{ color: 'var(--text-primary)' }}>popup_opened_unsupported</strong> —
+                you clicked the icon on a site that isn't one of the four
+                supported stores. Payload: <code>{'{ domain }'}</code>, bucketed to
+                <code>amazon / walmart / ebay / etsy / other</code>. Helps us
+                prioritise which new site to add next.
+              </li>
+              <li>
+                <strong style={{ color: 'var(--text-primary)' }}>overlay_dismissed</strong> —
+                you closed the floating overlay on a product page. No payload.
+              </li>
+            </ul>
+            <p style={{ marginBottom: '1rem' }}>
+              <strong style={{ color: 'var(--text-primary)' }}>What is never sent:</strong>{' '}
+              product IDs, URLs, page titles, review text, prices, IP addresses,
+              cookies, browser fingerprints, or any other personal data.
+            </p>
+            <p style={{ marginBottom: '1rem' }}>
+              The receiving server (a Cloudflare Worker under our control) does
+              not log IP addresses. Counters are aggregated per UTC day and
+              automatically deleted after 90 days.
+            </p>
+            <p>
+              <strong style={{ color: 'var(--text-primary)' }}>Opt out any time.</strong>{' '}
+              Click the small dot next to the version in the bottom-left of the
+              ReviewLens popup. When it's grey, telemetry is off. When it's
+              green, it's on.
+            </p>
+          </Section>
+
+          <Section title="7. Children's Privacy">
             <p>
               ReviewLens does not knowingly collect information from anyone under the age of 13.
               The extension does not require user registration and collects no personal information
@@ -238,7 +289,7 @@ export default function Privacy() {
             </p>
           </Section>
 
-          <Section title="7. Changes to This Policy">
+          <Section title="8. Changes to This Policy">
             <p>
               If we make material changes to this privacy policy, we will update the "Last updated"
               date at the top of this page and, where appropriate, notify users through the Chrome
@@ -246,7 +297,7 @@ export default function Privacy() {
             </p>
           </Section>
 
-          <Section title="8. Contact">
+          <Section title="9. Contact">
             <p>
               Questions about this privacy policy? Open an issue on our GitHub repository.
               We read everything.

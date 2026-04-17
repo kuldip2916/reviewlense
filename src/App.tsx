@@ -10,6 +10,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Welcome from './pages/Welcome';
 import Goodbye from './pages/Goodbye';
+import Stats from './pages/Stats';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/welcome"  element={<Welcome />} />
         <Route path="/goodbye"  element={<Goodbye />} />
+        <Route path="/stats"    element={<Stats />} />
       </Routes>
       <Footer />
     </Router>
