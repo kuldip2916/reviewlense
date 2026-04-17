@@ -5,8 +5,9 @@ import { ShieldCheck, Search, Sparkles, CheckCircle, RedditIcon, DollarSign } fr
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
 
-// Echo Dot — always has thousands of reviews and clear signal. Safe demo target.
-const DEMO_PRODUCT_URL = 'https://www.amazon.com/dp/B08N5WRWNW';
+// Link to Amazon's Best Sellers instead of a specific ASIN — individual product IDs
+// get delisted or region-locked over time, and a dead link is worse than an extra click.
+const AMAZON_BESTSELLERS_URL = 'https://www.amazon.com/gp/bestsellers/';
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -226,17 +227,18 @@ export default function Welcome() {
                 fontSize: 15,
               }}
             >
-              We'll open a popular Amazon listing in a new tab. Watch the
-              ReviewLens overlay appear in the bottom-right corner.
+              We'll open Amazon's Best Sellers in a new tab. Click any product
+              you're curious about — the ReviewLens overlay shows up in the
+              bottom-right corner within a few seconds.
             </p>
             <a
-              href={DEMO_PRODUCT_URL}
+              href={AMAZON_BESTSELLERS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}
             >
-              Open a demo product
+              Browse Amazon Best Sellers
               <span style={{ fontSize: 18 }}>→</span>
             </a>
           </div>
