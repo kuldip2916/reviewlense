@@ -1,20 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Frown, ShieldCheck } from '../components/Icons';
 
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
 
-/**
- * Tally embed URL — replace TALLY_FORM_ID before deploying.
- * Form should contain:
- *   - Multi-choice: "What made you uninstall?" (Options: didn't understand it / didn't work / too slow / privacy concerns / other)
- *   - Optional free text: "Anything else you'd like us to know?"
- *   - Optional email: "If we fix this, want us to let you know?"
- * See https://tally.so — free tier, no respondent account required.
- */
-const TALLY_EMBED_URL =
-  'https://tally.so/embed/REPLACE_ME?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
+// Zero-dependency exit survey: submit opens the user's mail client with the
+// form content pre-filled. No backend, no third-party embed, works offline.
+// To upgrade later: swap <ExitSurvey/> with a Tally iframe or a fetch() POST
+// to a Cloudflare Worker (see Phase B of the retention plan).
+const FEEDBACK_EMAIL = 'kuldip2916@gmail.com';
+
+const REASON_OPTIONS = [
+  "I didn't understand how to use it",
+  "It didn't work on the sites I shop on",
+  "I didn't find enough value in the scores",
+  "It was too slow or glitchy",
+  "Privacy concerns",
+  "I found a better tool",
+  'Other',
+];
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -95,7 +100,7 @@ export default function Goodbye() {
         </FadeIn>
       </section>
 
-      {/* Tally embed */}
+      {/* Native exit survey — mailto-backed, zero setup required */}
       <section
         style={{
           padding: '1rem 1.5rem 4rem',
@@ -104,29 +109,7 @@ export default function Goodbye() {
         }}
       >
         <FadeIn delay={80}>
-          <div
-            className="card"
-            style={{
-              padding: '1rem',
-              background: 'var(--surface)',
-              overflow: 'hidden',
-            }}
-          >
-            <iframe
-              src={TALLY_EMBED_URL}
-              loading="lazy"
-              width="100%"
-              height="520"
-              frameBorder={0}
-              title="ReviewLens exit survey"
-              style={{
-                border: 0,
-                width: '100%',
-                minHeight: 520,
-                background: 'transparent',
-              }}
-            />
-          </div>
+          <ExitSurvey />
         </FadeIn>
       </section>
 
@@ -224,5 +207,171 @@ export default function Goodbye() {
         </Link>
       </section>
     </main>
+  );
+}
+
+function ExitSurvey() {
+  const [reason, setReason] = useState('');
+  const [details, setDetails] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const subject = 'ReviewLens — exit feedback';
+    const body = [
+      'Reason: ' + (reason || '(not selected)'),
+      '',
+      'Anything else:',
+      details || '(none)',
+      '',
+      '---',
+      'Sent from the ReviewLens goodbye page.',
+    ].join('\n');
+    const href =
+      'mailto:' +
+      encodeURIComponent(FEEDBACK_EMAIL) +
+      '?subject=' +
+      encodeURIComponent(subject) +
+      '&body=' +
+      encodeURIComponent(body);
+    window.location.href = href;
+    setSubmitted(true);
+  }
+
+  if (submitted) {
+    return (
+      <div
+        className="card"
+        style={{
+          padding: '2rem 1.5rem',
+          textAlign: 'center',
+          background: 'linear-gradient(135deg, rgba(99,102,241,0.08) 0%, transparent 70%)',
+          borderColor: 'rgba(99,102,241,0.25)',
+        }}
+      >
+        <div style={{ fontSize: 28, marginBottom: 8 }}>✉️</div>
+        <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 6, color: 'var(--text)' }}>
+          Your mail client should have opened
+        </h3>
+        <p style={{ color: 'var(--sub)', fontSize: 14, lineHeight: 1.65 }}>
+          If nothing happened, email us directly at{' '}
+          <a href={`mailto:${FEEDBACK_EMAIL}`} style={{ color: 'var(--accent)' }}>
+            {FEEDBACK_EMAIL}
+          </a>
+          . Thank you — every reply genuinely shapes what gets built next.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="card"
+      style={{
+        padding: '1.5rem',
+        background: 'var(--surface)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.25rem',
+      }}
+    >
+      <div>
+        <label
+          htmlFor="exit-reason"
+          style={{
+            display: 'block',
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--text)',
+            marginBottom: 8,
+          }}
+        >
+          What made you uninstall?
+        </label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {REASON_OPTIONS.map((opt) => (
+            <label
+              key={opt}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                padding: '10px 12px',
+                border: '1px solid var(--border)',
+                borderRadius: 10,
+                background: reason === opt ? 'rgba(99,102,241,0.08)' : 'transparent',
+                borderColor: reason === opt ? 'rgba(99,102,241,0.4)' : 'var(--border)',
+                cursor: 'pointer',
+                fontSize: 14,
+                color: 'var(--text)',
+                transition: 'background 0.15s, border-color 0.15s',
+              }}
+            >
+              <input
+                type="radio"
+                name="exit-reason"
+                value={opt}
+                checked={reason === opt}
+                onChange={() => setReason(opt)}
+                style={{ accentColor: '#6366f1' }}
+              />
+              <span>{opt}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label
+          htmlFor="exit-details"
+          style={{
+            display: 'block',
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--text)',
+            marginBottom: 8,
+          }}
+        >
+          Anything else you'd like us to know? <span style={{ color: 'var(--muted)', fontWeight: 400 }}>(optional)</span>
+        </label>
+        <textarea
+          id="exit-details"
+          value={details}
+          onChange={(e) => setDetails(e.target.value)}
+          rows={4}
+          placeholder="What would have made you keep it?"
+          style={{
+            width: '100%',
+            padding: '10px 12px',
+            borderRadius: 10,
+            border: '1px solid var(--border)',
+            background: 'var(--bg2)',
+            color: 'var(--text)',
+            fontSize: 14,
+            fontFamily: 'inherit',
+            resize: 'vertical',
+            minHeight: 90,
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+        <button
+          type="submit"
+          className="btn-primary"
+          disabled={!reason && !details}
+          style={{
+            opacity: !reason && !details ? 0.5 : 1,
+            cursor: !reason && !details ? 'not-allowed' : 'pointer',
+          }}
+        >
+          Send feedback
+        </button>
+        <span style={{ fontSize: 12, color: 'var(--muted)' }}>
+          Opens your mail client — no account needed.
+        </span>
+      </div>
+    </form>
   );
 }
