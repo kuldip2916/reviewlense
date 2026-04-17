@@ -454,6 +454,58 @@ export default function Features() {
         </FadeIn>
       </section>
 
+      {/* Grade reference — linked from the in-page overlay "What does this mean?" */}
+      <section
+        id="grades"
+        style={{ padding: '1rem 1.5rem 3rem', maxWidth: '900px', margin: '0 auto', scrollMarginTop: '5rem' }}
+      >
+        <FadeIn>
+          <div className="card" style={{ padding: '2rem' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+              How the grade is calculated
+            </h2>
+            <p style={{ color: 'var(--text-secondary, var(--sub))', marginBottom: '1.5rem', fontSize: 15 }}>
+              Every product gets a 0–100 score blending{' '}
+              <strong style={{ color: 'var(--accent)' }}>review authenticity (70%)</strong>{' '}
+              and <strong style={{ color: '#f59e0b' }}>Reddit community sentiment (30%)</strong>.
+              The letter grade is a quick read on that blended score.
+            </p>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                gap: '0.75rem',
+              }}
+            >
+              {[
+                { grade: 'A', range: '80–100', color: '#22c55e', label: 'Trustworthy' },
+                { grade: 'B', range: '65–79',  color: '#84cc16', label: 'Mostly solid' },
+                { grade: 'C', range: '50–64',  color: '#f59e0b', label: 'Be cautious' },
+                { grade: 'D', range: '35–49',  color: '#ef4444', label: 'Likely suspect' },
+                { grade: 'F', range: '0–34',   color: '#dc2626', label: 'Avoid' },
+              ].map(g => (
+                <div
+                  key={g.grade}
+                  style={{
+                    padding: '1rem',
+                    textAlign: 'center',
+                    border: `1px solid ${g.color}33`,
+                    background: `${g.color}0a`,
+                    borderRadius: 12,
+                  }}
+                >
+                  <div style={{ fontSize: 26, fontWeight: 800, color: g.color, lineHeight: 1 }}>{g.grade}</div>
+                  <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 4, fontVariantNumeric: 'tabular-nums' }}>
+                    {g.range}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--sub)', marginTop: 6 }}>{g.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
       {/* Feature sections */}
       <section style={{ padding: '2rem 1.5rem 6rem', maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6rem' }}>

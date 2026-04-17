@@ -39,6 +39,7 @@ export default function Footer() {
             </div>
             {[
               { label: 'Features', to: '/features' },
+              { label: 'Blog', to: '/blog' },
               { label: 'FAQ', to: '/faq' },
               { label: 'Privacy Policy', to: '/privacy' },
             ].map(l => (

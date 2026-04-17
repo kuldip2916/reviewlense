@@ -6,6 +6,10 @@ import Home from './pages/Home';
 import Features from './pages/Features';
 import FAQ from './pages/FAQ';
 import Privacy from './pages/Privacy';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import Welcome from './pages/Welcome';
+import Goodbye from './pages/Goodbye';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,6 +29,10 @@ export default function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/faq"      element={<FAQ />} />
         <Route path="/privacy"  element={<Privacy />} />
+        <Route path="/blog"     element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/welcome"  element={<Welcome />} />
+        <Route path="/goodbye"  element={<Goodbye />} />
       </Routes>
       <Footer />
     </Router>

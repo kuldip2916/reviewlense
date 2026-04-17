@@ -19,6 +19,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Features',    to: '/features' },
+    { label: 'Blog',        to: '/blog' },
     { label: 'FAQ',         to: '/faq' },
     { label: 'Privacy',     to: '/privacy' },
   ];
