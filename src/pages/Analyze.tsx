@@ -33,14 +33,11 @@ function detectPlatformFromUrl(url: string): Platform | null {
 }
 
 export default function Analyze() {
-  // Read ?url= from the hash segment. HashRouter gives us `#/analyze?url=...`
-  // but useSearchParams in HashRouter doesn't cover that - parse manually.
-  const initialUrl = (() => {
-    const hash = window.location.hash;
-    const q = hash.indexOf('?');
-    if (q === -1) return '';
-    return new URLSearchParams(hash.slice(q + 1)).get('url') || '';
-  })();
+  // BrowserRouter puts query string in window.location.search.
+  // (Pre-migration this read from window.location.hash because HashRouter
+  // packed everything into the fragment.)
+  const initialUrl =
+    new URLSearchParams(window.location.search).get('url') || '';
 
   const [state, setState] = useState<State>({ kind: 'hero' });
 

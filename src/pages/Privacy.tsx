@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { ShieldOff, Globe, Radio, Gift } from '../components/Icons';
+import SEO from '../components/SEO';
 
 /* ─── Section component ─────────────────────────────── */
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -49,6 +50,11 @@ export default function Privacy() {
 
   return (
     <main style={{ paddingTop: '5rem' }}>
+      <SEO
+        title="Privacy Policy — ReviewLens"
+        description="ReviewLens collects no personal data. Everything stays in your browser. Read the full privacy policy."
+        canonical="/privacy"
+      />
       {/* Hero */}
       <section style={{ padding: '4rem 1.5rem 3rem', textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
         <div style={{

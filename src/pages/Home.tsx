@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ShieldCheck, Search, Globe, TrendingUp, Star, CheckCircle, BarChart, AlertTriangle, Zap, DollarSign, Type, Copy, MessageCircle, Lock, Target, ArrowUpCircle, Clock, Filter, Lightbulb, Frown, Hourglass, RedditIcon, Eye, Scale } from '../components/Icons';
+import SEO from '../components/SEO';
+import { JsonLd, softwareApplicationSchema } from '../lib/jsonld';
 
 /* ── Animated Score Ring ──────────────────────────────────── */
 function ScoreRing({ score, size = 110, animate = false }: { score: number; size?: number; animate?: boolean }) {
@@ -684,6 +686,11 @@ export default function Home() {
 
   return (
     <main>
+      <SEO
+        title="ReviewLens — Fake Review Detector for Amazon, Walmart, eBay & Etsy"
+        description="Free Chrome extension that detects fake reviews using AI signals plus Reddit cross-referencing. Works on Amazon, Walmart, eBay, and Etsy."
+        canonical="/"
+      />
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section style={{
         minHeight: '100vh', display: 'flex', alignItems: 'center',
@@ -1187,6 +1194,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <JsonLd schema={softwareApplicationSchema()} />
     </main>
   );
 }

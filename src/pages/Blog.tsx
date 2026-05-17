@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from '../components/Icons';
+import SEO from '../components/SEO';
 
 interface BlogPost {
   slug: string;
@@ -65,6 +66,11 @@ export default function Blog() {
         paddingBottom: 80,
       }}
     >
+      <SEO
+        title="Blog — Fake Reviews, Detection, and Honest Shopping"
+        description="Articles on spotting fake Amazon reviews, Fakespot alternatives, and how online review fraud works."
+        canonical="/blog"
+      />
       {/* Hero Section */}
       <section
         style={{

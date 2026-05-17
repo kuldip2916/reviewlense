@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kuldip2916.github.io/reviewlense/sitemap.xml

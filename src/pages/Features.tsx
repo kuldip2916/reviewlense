@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ShieldCheck, RedditIcon, DollarSign, Zap, BarChart, Search, Sparkles } from '../components/Icons';
+import SEO from '../components/SEO';
 
 /* ─── Animated section wrapper ─────────────────────── */
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -431,6 +432,11 @@ export default function Features() {
 
   return (
     <main style={{ paddingTop: '5rem' }}>
+      <SEO
+        title="Features — How ReviewLens Detects Fake Reviews"
+        description="Seven authenticity signals, Reddit community sentiment, price tracking. Transparent A–F scoring on every product page."
+        canonical="/features"
+      />
       {/* Hero */}
       <section style={{ padding: '5rem 1.5rem 4rem', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
         <FadeIn>

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Search, Sparkles, CheckCircle, RedditIcon, DollarSign } from '../components/Icons';
+import SEO from '../components/SEO';
 
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
@@ -97,6 +98,11 @@ export default function Welcome() {
 
   return (
     <main style={{ paddingTop: '5rem', minHeight: '80vh' }}>
+      <SEO
+        title="Welcome to ReviewLens — Get Started in 60 Seconds"
+        description="You just installed ReviewLens. Here's how to use it on Amazon, Walmart, eBay, and Etsy."
+        canonical="/welcome"
+      />
       {/* Hero */}
       <section
         style={{

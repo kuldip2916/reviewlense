@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Lightbulb, BarChart, Lock, Settings, HelpCircle } from '../components/Icons';
+import SEO from '../components/SEO';
+import { JsonLd, faqPageSchema } from '../lib/jsonld';
 
 /* ─── Animated fade-in ──────────────────────────────── */
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -269,8 +271,112 @@ export default function FAQ() {
     setOpenKey(prev => prev === key ? null : key);
   };
 
+  // Plain-text Q&A pairs for FAQPage JSON-LD schema. Duplicates the visible
+  // FAQ data above intentionally — the UI uses rich JSX answers, the schema
+  // needs flat strings for Google to parse rich-snippet content.
+  const faqSchemaItems: { question: string; answer: string }[] = [
+    {
+      question: 'What is ReviewLens?',
+      answer: 'ReviewLens is a free Chrome extension that analyses product listings on Amazon, Walmart, eBay, and Etsy. It combines review authenticity signals, Reddit community sentiment, and price history to give you an honest, unbiased verdict before you buy.',
+    },
+    {
+      question: 'Is ReviewLens free?',
+      answer: 'Yes - 100% free, forever. There are no premium tiers, no subscriptions, and no hidden charges. The extension is open-source and will remain free.',
+    },
+    {
+      question: 'Do I need to create an account?',
+      answer: "No. ReviewLens requires zero sign-up. Install it, visit a product page, and click the icon. That's it.",
+    },
+    {
+      question: 'Which platforms are supported?',
+      answer: 'ReviewLens currently works on Amazon, Walmart, eBay, and Etsy. We plan to add more platforms based on user feedback.',
+    },
+    {
+      question: 'How accurate is the analysis?',
+      answer: 'ReviewLens uses five independent signals that correlate strongly with fake-review patterns identified in academic research. No automated tool is perfect - we recommend using the score as one input, not the sole decision factor. For high-value purchases, reading a sample of Reddit discussions directly is always a good idea.',
+    },
+    {
+      question: 'What does the overall score mean?',
+      answer: "The overall score (0-100) is a weighted combination: 70% from the review authenticity analysis and 30% from Reddit sentiment. It's then adjusted for confidence - products with very few reviews get pulled toward 50 (neutral) to avoid misleading results. The score maps to letter grades: A (80+), B (65+), C (50+), D (35+), F (below 35). A lower score means more red flags - it doesn't necessarily mean the product is bad, just that its reviews may be unreliable.",
+    },
+    {
+      question: 'What signals are used for the authenticity score?',
+      answer: 'Seven signals contribute to the authenticity score: 1. Verified purchase ratio - what percentage of reviews are from verified buyers. 2. Review burst detection - abnormal spikes in review volume over time. 3. Rating clustering - unnatural concentration at 5-stars with few mid-range ratings. 4. Text quality analysis - detects generic, AI-generated, or low-quality review language (beyond just word count). 5. Sentiment-rating mismatch - catches reviews where the star rating contradicts the text (e.g. 5 stars but says "terrible product"). 6. Duplicate detection - finds near-identical copy-pasted reviews from fake review farms. 7. Temporal decay - recent red flags are weighted more heavily than old ones.',
+    },
+    {
+      question: 'How do the penalties compound?',
+      answer: 'Unlike simple additive scoring (e.g. "minus 15 points per flag"), ReviewLens uses multiplicative compounding. Each red flag multiplies the score by a penalty factor (e.g. x0.65 for high severity, x0.80 for medium). This means a single flag barely affects the score, but multiple flags stacking together cause a much sharper drop - which accurately reflects how real fake-review schemes involve multiple correlated signals.',
+    },
+    {
+      question: 'What is the "confidence" indicator?',
+      answer: "Products with very few reviews (under 10) show a \"low confidence\" badge. This means the score is less reliable because there's not enough data. In this case, the score is pulled 20% toward 50 (neutral) to avoid misleading you. Products with 10-50 reviews get a small 5% adjustment, and products with 50+ reviews are shown at full confidence with no adjustment.",
+    },
+    {
+      question: 'How does Reddit sentiment work?',
+      answer: 'ReviewLens searches Reddit for posts that genuinely discuss the product using a multi-pass relevance scoring system: product ID matches score highest (+12), brand mentions score next (+5), and product nouns use word-boundary matching for precision. Over 60 spam subreddits are blocked, and product-review subreddits get a +3 bonus. Sentiment is time-weighted - recent posts matter more than old ones - and upvote-weighted so popular opinions carry more influence.',
+    },
+    {
+      question: 'Why is the Reddit score sometimes 50 even for good products?',
+      answer: "A score of 50 means ReviewLens found no Reddit discussions for this product. This is neutral - not positive or negative. It's common for niche or lesser-known products. When no posts are found, we default to a neutral 50 so the Reddit component doesn't unfairly penalise the overall score.",
+    },
+    {
+      question: 'What does "insufficient data" mean on the price chart?',
+      answer: "The price tracking feature works by recording the price each time you visit a product page. \"Insufficient data\" means this is the first (or second) time you've visited - there isn't enough history yet to calculate a trend. Visit the same product a few days later and a trend will appear.",
+    },
+    {
+      question: 'What data does ReviewLens collect?',
+      answer: "ReviewLens collects no personal data. The only data stored is price history and cached analysis results - this is kept entirely inside your browser's own storage area (chrome.storage.local), managed and protected by Chrome itself. It's not saved as files on your hard drive, and it's never sent to any server operated by us.",
+    },
+    {
+      question: 'Do you sell or share my data?',
+      answer: "No. We don't collect personal data, so there's nothing to sell or share. ReviewLens has no backend servers that receive browsing data.",
+    },
+    {
+      question: 'What network requests does the extension make?',
+      answer: "ReviewLens makes requests to: Amazon's unofficial reviews API to fetch review data; Reddit's public search API to find product discussions; and Walmart, eBay, and Etsy platform-specific review endpoints. No requests are made to ReviewLens servers. All processing happens locally in your browser.",
+    },
+    {
+      question: 'Where exactly is my data stored?',
+      answer: "All data is stored in chrome.storage.local - a secure storage area built into Chrome itself, tied to the extension. It's not stored as files on your computer's hard drive or in a database. Think of it like the extension's private memory that only Chrome can access. When you uninstall the extension, this data is automatically deleted.",
+    },
+    {
+      question: 'Can I delete stored price history?',
+      answer: "Yes. Open Chrome DevTools on any page, then go to Application > Storage > Local Storage > chrome-extension://... and you can view and delete any stored price data. Alternatively, uninstalling and reinstalling the extension clears everything. We're working on adding a built-in clear button in a future update.",
+    },
+    {
+      question: 'Why does the extension need access to Amazon/Walmart/eBay/Etsy?',
+      answer: 'The extension needs host permissions to inject the ReviewLens button into product pages and to read the current page price and product ID. It does not read, collect, or transmit any other page content.',
+    },
+    {
+      question: 'Why does analysis sometimes take 10-15 seconds?',
+      answer: 'ReviewLens runs several analyses in parallel: review fetching and scoring, Reddit search across multiple queries, and price tracking. The Reddit search is typically the slowest step, as it queries multiple Reddit API endpoints. Results are cached for 24 hours so repeat visits are instant.',
+    },
+    {
+      question: 'Why does the popup show "Loading..." but never finish?',
+      answer: "This can happen if the extension's background service worker has gone inactive (Chrome suspends them after ~30 seconds). Try closing and reopening the popup. If it persists, go to chrome://extensions, find ReviewLens, click the reload button, and try again.",
+    },
+    {
+      question: 'Does it work in Incognito mode?',
+      answer: 'Not by default - Chrome extensions are disabled in Incognito unless you explicitly allow it. Go to chrome://extensions, then ReviewLens, then Details, and toggle "Allow in Incognito" on.',
+    },
+    {
+      question: 'The price is showing wrong. How does price extraction work?',
+      answer: "ReviewLens runs a small script inside the product page's DOM to extract the displayed price. If the page uses an unusual layout or lazy-loads pricing, the script may not find it. In that case, no price is recorded for that visit - the chart will simply have one less data point.",
+    },
+    {
+      question: 'Is the source code available?',
+      answer: 'Yes! ReviewLens is open-source. You can review the code, report issues, or contribute on GitHub. We believe in full transparency - especially for a tool that touches your shopping data.',
+    },
+  ];
+
   return (
     <main style={{ paddingTop: '5rem' }}>
+      <SEO
+        title="FAQ — ReviewLens Fake Review Detector"
+        description="Common questions about ReviewLens: how the score works, what data we collect, supported platforms, Fakespot comparison."
+        canonical="/faq"
+      />
+      <JsonLd schema={faqPageSchema(faqSchemaItems)} />
       {/* Hero */}
       <section style={{ padding: '5rem 1.5rem 3rem', textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
         <FadeIn>

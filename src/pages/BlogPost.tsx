@@ -1,5 +1,17 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from '../components/Icons';
+import SEO from '../components/SEO';
+import { JsonLd, blogPostingSchema } from '../lib/jsonld';
+
+function toISODate(human: string): string {
+  // Parse the human-readable date in UTC to avoid timezone shifts that would
+  // push e.g. "April 1, 2026" back to "2026-03-31" in negative-UTC zones (or
+  // positive-UTC zones via toISOString()). Using Date.UTC keeps the date
+  // string stable everywhere.
+  const d = new Date(human);
+  const utc = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  return utc.toISOString().slice(0, 10);
+}
 
 // Import blog content components
 import FakeAmazonReviewsPost from '../blog/fake-amazon-reviews';
@@ -12,6 +24,7 @@ interface BlogPostMetadata {
   date: string;
   readTime: string;
   category: string;
+  description: string;
   component: React.ComponentType;
 }
 
@@ -22,6 +35,8 @@ const blogPostsMap: Record<string, BlogPostMetadata> = {
     date: 'April 1, 2026',
     readTime: '6 min read',
     category: 'Guide',
+    description:
+      'Fake reviews on Amazon have gotten smarter. Here are the patterns to watch for - and what tools can help you see through them.',
     component: FakeAmazonReviewsPost,
   },
   'best-fakespot-alternatives-2026': {
@@ -30,6 +45,8 @@ const blogPostsMap: Record<string, BlogPostMetadata> = {
     date: 'March 28, 2026',
     readTime: '5 min read',
     category: 'Roundup',
+    description:
+      "Fakespot shut down in July 2025. Here's what actually works now for checking if product reviews are real.",
     component: FakespotAlternativesPost,
   },
   'are-online-reviews-fake': {
@@ -38,6 +55,8 @@ const blogPostsMap: Record<string, BlogPostMetadata> = {
     date: 'March 25, 2026',
     readTime: '4 min read',
     category: 'Guide',
+    description:
+      "Nearly 40% of online reviews are estimated to be fake. Here's how to protect yourself before you buy.",
     component: AreReviewsFakePost,
   },
 };
@@ -130,6 +149,19 @@ export default function BlogPost() {
         paddingBottom: 80,
       }}
     >
+      <SEO
+        title={`${post.title} | ReviewLens`}
+        description={post.description}
+        canonical={`/blog/${post.slug}`}
+      />
+      <JsonLd
+        schema={blogPostingSchema({
+          title: post.title,
+          description: post.description,
+          slug: post.slug,
+          datePublished: toISODate(post.date),
+        })}
+      />
       {/* Back Button */}
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px', marginBottom: 48 }}>
         <Link

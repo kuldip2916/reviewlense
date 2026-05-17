@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Frown, ShieldCheck } from '../components/Icons';
+import SEO from '../components/SEO';
 
 const CHROME_STORE_URL =
   'https://chromewebstore.google.com/detail/reviewlens-fake-review-de/ncneomnblmiefoplgpcpkjijkhpafkei';
@@ -41,6 +42,10 @@ export default function Goodbye() {
 
   return (
     <main style={{ paddingTop: '5rem', minHeight: '80vh' }}>
+      <SEO
+        title="Goodbye — Help Us Improve ReviewLens"
+        description="Tell us why you uninstalled. One question, 20 seconds. Helps us build a better tool."
+      />
       {/* Hero */}
       <section
         style={{
