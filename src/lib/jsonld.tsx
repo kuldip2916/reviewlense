@@ -1,4 +1,4 @@
-const ORIGIN = 'https://kuldip2916.github.io/reviewlense';
+const ORIGIN = 'https://reviewlense.com';
 
 export function softwareApplicationSchema() {
   return {

@@ -7,7 +7,7 @@ interface SEOProps {
   ogImage?: string;   // path; defaults to /logo.png
 }
 
-const SITE_ORIGIN = 'https://kuldip2916.github.io/reviewlense';
+const SITE_ORIGIN = 'https://reviewlense.com';
 
 export default function SEO({ title, description, canonical, ogImage = '/logo.png' }: SEOProps) {
   useEffect(() => {

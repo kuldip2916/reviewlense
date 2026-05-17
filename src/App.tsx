@@ -21,7 +21,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <Router basename="/reviewlense">
+    <Router>
       <ScrollToTop />
       <div className="mesh-bg" />
       <div className="grid-overlay" />

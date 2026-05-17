@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kuldip2916.github.io/reviewlense/sitemap.xml
+Sitemap: https://reviewlense.com/sitemap.xml
